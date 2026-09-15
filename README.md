@@ -80,3 +80,5 @@ Education icons use unmodified university assets:
 The marks identify the listed schools and remain the property of their respective universities.
 
 All visitor-facing content, including animation examples, must remain in English.
+
+The Minnesota education entry shows the school and degree only; omit its attendance dates from the homepage.
