@@ -82,3 +82,5 @@ The marks identify the listed schools and remain the property of their respectiv
 All visitor-facing content, including animation examples, must remain in English.
 
 The Minnesota education entry shows the school and degree only; omit its attendance dates from the homepage.
+
+Each experience/project card includes a visible, three-step illustrative use case before the implementation details and animations. These authored scenarios explain the workflow, not measured model performance or recorded outputs.

@@ -387,3 +387,14 @@ body.page-hidden::before, body.page-hidden h1, body.page-hidden .portrait-wrap::
 .profile-contact { display: flex; flex-direction: column; gap: 6px; }
 .phone { font-size: .875rem; }
 @media (max-width: 760px) { .profile-contact { grid-column: 2; } .phone { font-size: .8125rem; } }
+
+/* A readable overview before each detailed workflow. */
+.use-case { margin: 22px 0; padding: 20px; border: 1px solid #e2e7f1; border-radius: 15px; background: linear-gradient(115deg, #f6f9ff, #fbf8ff); }
+.use-case-label { margin: 0 0 6px; color: #768098; font-size: .75rem; }
+.use-case h4 { margin: 0 0 18px; color: #44536d; font-size: 1rem; font-weight: 600; line-height: 1.5; }
+.use-case ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 0; padding: 0; list-style: none; }
+.use-case li { display: flex; align-items: flex-start; gap: 10px; min-width: 0; }
+.use-case-step { display: grid; place-items: center; flex: 0 0 26px; height: 26px; border-radius: 50%; background: #e8edfb; color: #6a78a2; font-size: .75rem; font-variant-numeric: tabular-nums; }
+.use-case strong { display: block; color: #4a5870; font-size: .875rem; line-height: 1.8; }
+.use-case li p { margin: 5px 0 0; color: #626e82; font-size: .875rem; line-height: 1.65; overflow-wrap: anywhere; }
+@media (max-width: 760px) { .use-case { padding: 16px; } .use-case ol { grid-template-columns: 1fr; gap: 18px; } }

@@ -11,8 +11,8 @@
   <meta property="og:url" content="https://weichaohuang1220.github.io/">
   <link rel="canonical" href="https://weichaohuang1220.github.io/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260915-responsive-map">
-  <script src="script.js?v=20260915-responsive-map" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260915-project-overviews">
+  <script src="script.js?v=20260915-project-overviews" defer></script>
   <title>Weichao Huang · Johns Hopkins University</title>
 </head>
 <body>
@@ -75,6 +75,15 @@
           </div>
           <p class="role">Graduate Software Engineer · Johns Hopkins University Medicine</p>
           <p>Built an iOS app in SwiftUI for AI-assisted facial palsy assessment, used by patients and clinicians at Johns Hopkins University Medicine.</p>
+          <div class="use-case" aria-labelledby="dynaface-example-title">
+            <p class="use-case-label">Illustrative use case</p>
+            <h4 id="dynaface-example-title">A recording becomes a reviewable report</h4>
+            <ol>
+              <li><span class="use-case-step">1</span><div><strong>Patient</strong><p>Records a facial-movement video in the app and uploads it.</p></div></li>
+              <li><span class="use-case-step">2</span><div><strong>Cloud processing</strong><p>The video is analyzed while the app waits for the results.</p></div></li>
+              <li><span class="use-case-step">3</span><div><strong>Clinician</strong><p>Reviews the annotated video and five-area scorecard.</p></div></li>
+            </ol>
+          </div>
           <details>
             <summary>Implementation details <span aria-hidden="true">+</span></summary>
             <div class="detail-body"><ul>
@@ -96,6 +105,15 @@
           </div>
           <p>Trained a 64M-parameter language model from scratch through pre-training, supervised fine-tuning, LoRA, DPO, and GRPO.</p>
           <p class="tech">Python · PyTorch · LoRA · DPO · GRPO</p>
+          <div class="use-case" aria-labelledby="minimind-example-title">
+            <p class="use-case-label">Illustrative use case</p>
+            <h4 id="minimind-example-title">A small conversational assistant</h4>
+            <ol>
+              <li><span class="use-case-step">1</span><div><strong>Train</strong><p>A small language model learns from text and example conversations.</p></div></li>
+              <li><span class="use-case-step">2</span><div><strong>Ask</strong><p>“What is a cache?”</p></div></li>
+              <li><span class="use-case-step">3</span><div><strong>Example reply</strong><p>“A cache stores frequently used data so it can be reused quickly.”</p></div></li>
+            </ol>
+          </div>
           <details>
             <summary>Implementation details <span aria-hidden="true">+</span></summary>
             <div class="detail-body"><ul>
@@ -114,6 +132,15 @@
           <p>Built a multi-step AI agent with tool calling and knowledge-base retrieval using pgvector, model switching, and streamed task progress via SSE.</p>
           <p class="tech">Java · Spring AI · PostgreSQL</p>
 
+          <div class="use-case" aria-labelledby="chatmind-example-title">
+            <p class="use-case-label">Illustrative use case</p>
+            <h4 id="chatmind-example-title">Find an answer in a room-booking guide</h4>
+            <ol>
+              <li><span class="use-case-step">1</span><div><strong>Ask</strong><p>“How do I book a meeting room?”</p></div></li>
+              <li><span class="use-case-step">2</span><div><strong>Find the source</strong><p>The agent searches the guide and retrieves the relevant instructions.</p></div></li>
+              <li><span class="use-case-step">3</span><div><strong>Example answer</strong><p>“Open the room calendar, choose a slot, and submit a booking.”</p></div></li>
+            </ol>
+          </div>
           <details class="project-demo" data-demo="chatmind"><summary>View animation <span aria-hidden="true">+</span></summary><div class="demo-body"><div class="demo-controls" hidden><div class="demo-steps" role="group" aria-label="Animation steps"><button type="button" data-demo-step="0" aria-pressed="true" aria-controls="chatmind-stage-0">Think</button><button type="button" data-demo-step="1" aria-pressed="false" aria-controls="chatmind-stage-1">Execute</button><button type="button" data-demo-step="2" aria-pressed="false" aria-controls="chatmind-stage-2">Retrieve</button><button type="button" data-demo-step="3" aria-pressed="false" aria-controls="chatmind-stage-3">Models</button><button type="button" data-demo-step="4" aria-pressed="false" aria-controls="chatmind-stage-4">Stream</button></div><button class="demo-play" type="button">Play</button></div><div class="demo-stage"><div class="demo-panel stage-chatmind-0" id="chatmind-stage-0" role="group" aria-label="Think"><div class="stage-art" aria-hidden="true"><div class="think-art"><span class="task-node">Book a meeting room?</span><div class="planning-links"><i></i><i></i><i></i></div><div class="plan-nodes"><span>Think</span><span>Plan</span><span>Find guide</span></div><div class="loop-return">Think ↔ Execute</div></div></div><p class="stage-caption">Plan the next action in the Think–Execute loop</p><div class="stage-example"><span class="example-label">Example</span><dl><div><dt>User request</dt><dd>“How do I book a meeting room?”</dd></div><div><dt>Plan</dt><dd>Find the room guide → extract the booking steps.</dd></div></dl></div></div><div class="demo-panel stage-chatmind-1" id="chatmind-stage-1" role="group" aria-label="Execute"><div class="stage-art" aria-hidden="true"><div class="execute-art"><span class="flow-node ">Agent</span><div class="tool-dispatch"><i></i><i></i><i></i></div><div class="tool-nodes"><span style="--i:0">Tool call</span><span style="--i:1">Execute</span><span style="--i:2">State update</span></div></div></div><p class="stage-caption">Dispatch tools and update the agent state</p><div class="stage-example"><span class="example-label">Example</span><dl><div><dt>Tool input</dt><dd>Search the knowledge base for “meeting room booking”.</dd></div><div><dt>State update</dt><dd>Search complete; relevant passages are ready.</dd></div></dl></div></div><div class="demo-panel stage-chatmind-2" id="chatmind-stage-2" role="group" aria-label="Retrieve"><div class="stage-art" aria-hidden="true"><div class="rag-art"><span class="query-node">Query embedding</span><div class="retrieval-path"></div><div class="vector-store"><i class="" style="--i:0"></i><i class="vector-match" style="--i:1"></i><i class="" style="--i:2"></i><i class="" style="--i:3"></i><i class="vector-match" style="--i:4"></i><i class="" style="--i:5"></i><i class="" style="--i:6"></i><i class="" style="--i:7"></i><i class="vector-match" style="--i:8"></i><i class="" style="--i:9"></i><i class="" style="--i:10"></i><i class="" style="--i:11"></i></div><span class="store-label">pgvector · Relevant context</span></div></div><p class="stage-caption">Use pgvector similarity search to retrieve relevant context</p><div class="stage-example"><span class="example-label">Example</span><dl><div><dt>Example guide passage</dt><dd>“Open the room calendar, choose a slot, then submit a booking.”</dd></div><div><dt>Retrieved context</dt><dd>Use this passage to ground the answer.</dd></div></dl></div></div><div class="demo-panel stage-chatmind-3" id="chatmind-stage-3" role="group" aria-label="Models"><div class="stage-art" aria-hidden="true"><div class="registry-art"><span class="registry-hub">ClientRegistry</span><div class="registry-path"></div><div class="model-options"><span style="--i:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="4"/><path d="M9 1v4m6-4v4M9 19v4m6-4v4"/></svg></span><span style="--i:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="4"/><path d="M9 1v4m6-4v4M9 19v4m6-4v4"/></svg></span><span style="--i:2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="4"/><path d="M9 1v4m6-4v4M9 19v4m6-4v4"/></svg></span></div><span class="store-label">Model switching</span></div></div><p class="stage-caption">Switch models through ClientRegistry</p><div class="stage-example"><span class="example-label">Example</span><dl><div><dt>Model selection</dt><dd>Model A → Model B through ClientRegistry</dd></div><div><dt>Same request</dt><dd>“How do I book a meeting room?”</dd></div></dl></div></div><div class="demo-panel stage-chatmind-4" id="chatmind-stage-4" role="group" aria-label="Stream"><div class="stage-art" aria-hidden="true"><div class="sse-art"><div class="sse-heading"><span>SSE</span><span class="stream-status">Live progress</span></div><div class="streamed-output"><div style="--i:0"><i></i><span></span></div><div style="--i:1"><i></i><span></span></div><div style="--i:2"><i></i><span></span></div><div style="--i:3"><i></i><span></span></div></div><div class="stream-cursor"></div></div></div><p class="stage-caption">Stream execution progress to the interface using SSE</p><div class="stage-example"><span class="example-label">Example</span><dl><div><dt>Live events</dt><dd>Searching guide… → Found instructions → Writing answer…</dd></div><div><dt>Example answer</dt><dd>Open the room calendar, choose a slot, and submit a booking.</dd></div></dl></div></div></div><p class="demo-note">Illustrative examples · not recorded runs</p></div></details>
         </article>
       </section>
