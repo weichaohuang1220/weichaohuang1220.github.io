@@ -11,7 +11,6 @@ Repository: https://github.com/weichaohuang1220/weichaohuang1220.github.io
 - `dist/index.html`: biography, selected projects, education, skills, and contact details.
 - `dist/styles.css`: typography, layout, and responsive styles.
 - `dist/script.js`: copy-email interaction and copyright year.
-- `dist/assets/Weichao-Huang-Resume.pdf`: public academic CV.
 
 All content is based on the supplied résumé and the stated interests in AI agents, AI infrastructure, and LLM inference. Research interests are presented as interests rather than completed research or publications. No clinical data or patient media is included.
 
@@ -49,9 +48,9 @@ Make future changes in `/Users/pioneerrr/weichaohuang1220.github.io`, check the 
 - DynaFace is described as software engineering experience. The 1,000–2,000 patient figure is a design capacity target, not a measured adoption count.
 - Project repositories are not linked because no verified public source URLs were supplied.
 
-## Current CV and content source
+## Content source
 
-The website uses the owner-provided `WH-resume.pdf` as its factual source. `dist/assets/Weichao-Huang-Resume.pdf` is an exact, unmodified copy, including the original email address, phone number, and website. The owner explicitly requested restoring the full personal website and retaining personal information. The homepage displays only the Gmail contact; its phone number and school email are omitted. The downloadable resume remains the supplied original.
+The website uses the owner-provided `WH-resume.pdf` as its factual source. The resume is not published or offered for download. The homepage displays only the Gmail contact; its phone number and school email are omitted.
 
 The current projects are MiniMind (2026.03–2026.06) and ChatMind (2025.12–2026.02). DynaFace includes account security and patient data-visibility controls. Parallel Programming remains coursework in the PDF and is not presented as a research direction on the homepage.
 
@@ -59,9 +58,9 @@ Each project has a native “View animation” disclosure that expands inline. D
 
 Each scene includes a concrete illustrative example: a synthetic video job for DynaFace, a Chinese arithmetic training example for MiniMind, and a fictional meeting-room guide lookup for ChatMind. Automatic steps allow 8.5 seconds for reading. These are authored examples, not recorded runs or verified model outputs.
 
-These workflow illustrations are schematic, not actual app screenshots, patient images, training measurements, or generated task results. MiniMind and ChatMind use the owner-provided detailed Chinese resume only as an animation reference. That reference is not published; the downloadable CV and website dates continue to follow `WH-resume.pdf`.
+These workflow illustrations are schematic, not actual app screenshots, patient images, training measurements, or generated task results. MiniMind and ChatMind use the owner-provided detailed Chinese resume only as an animation reference. That reference is not published; website dates continue to follow `WH-resume.pdf`.
 
-When replacing the CV, check the homepage biography, dates, experience, projects, skills, metadata, and contact links against the new file. Display only the Gmail contact on the homepage; do not re-add the phone number or school email. Git commits use a generic maintainer identity.
+When updating the source resume, check the homepage biography, dates, experience, projects, skills, metadata, and contact links against the new file. Display only the Gmail contact on the homepage; do not re-add the phone number or school email. Git commits use a generic maintainer identity.
 
 The homepage portrait uses a JPEG display copy of the owner-provided photo with EXIF and GPS metadata removed. The original HEIC is available at `dist/assets/IMG_2675.HEIC`, unchanged including its embedded metadata, as explicitly authorized by the owner.
 

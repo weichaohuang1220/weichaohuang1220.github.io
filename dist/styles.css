@@ -52,7 +52,6 @@ h1 { margin-bottom: 14px; font-size: 1.9375rem; line-height: 1.2; letter-spacing
 .email { font-size: .875rem; overflow-wrap: anywhere; }
 .profile-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 22px; font-size: .75rem; }
 .profile-links a, .copy-email { display: inline-flex; align-items: center; justify-content: center; min-height: 36px; padding: 5px 10px; border: 1px solid #e2e8f1; border-radius: 10px; background: #ffffffa6; color: #53637b; transition: background .2s, border-color .2s, transform .3s var(--ease-out); }
-.profile-links a:first-child { background: #edf2fc; border-color: #dce5f5; color: #395f9c; font-weight: 600; padding-inline: 15px; }
 .copy-email { cursor: pointer; font-size: .75rem; }
 .profile-links .copy-email { width: 36px; padding: 0; }
 .profile-links a:hover, .copy-email:hover { text-decoration: none; background: #f0f4fc; border-color: #cbd9ef; transform: translateY(-2px); }
