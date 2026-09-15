@@ -56,7 +56,7 @@ The current projects are MiniMind (2026.03–2026.06) and ChatMind (2025.12–20
 
 Each project has a native “View animation” disclosure that expands inline. DynaFace has four independent scenes (capture, upload, inference, results); MiniMind has five (pre-training, SFT, LoRA, DPO, GRPO); ChatMind has five (Think, Execute, pgvector retrieval, model switching, SSE streaming). Each step uses its own illustration and motion. Step buttons allow direct selection, with automatic playback and a pause control. Playback stops when closed, offscreen, or in a hidden tab. Reduced-motion preferences disable animation and automatic playback while retaining manual step selection.
 
-Each scene includes a concrete illustrative example: a synthetic video job for DynaFace, a Chinese arithmetic training example for MiniMind, and a fictional meeting-room guide lookup for ChatMind. Automatic steps allow 8.5 seconds for reading. These are authored examples, not recorded runs or verified model outputs.
+Each scene includes a concrete illustrative example: a synthetic video job for DynaFace, an English arithmetic training example for MiniMind, and a fictional meeting-room guide lookup for ChatMind. Automatic steps allow 8.5 seconds for reading. These are authored examples, not recorded runs or verified model outputs.
 
 These workflow illustrations are schematic, not actual app screenshots, patient images, training measurements, or generated task results. MiniMind and ChatMind use the owner-provided detailed Chinese resume only as an animation reference. That reference is not published; website dates continue to follow `WH-resume.pdf`.
 
@@ -78,3 +78,5 @@ Education icons use unmodified university assets:
 - UMN Block M: https://twin-cities.umn.edu/ . Asset: https://twin-cities.umn.edu/sites/twin-cities.umn.edu/files/block-m__gold-bg.png
 
 The marks identify the listed schools and remain the property of their respective universities.
+
+All visitor-facing content, including animation examples, must remain in English.
