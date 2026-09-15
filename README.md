@@ -66,7 +66,7 @@ The homepage portrait uses a JPEG display copy of the owner-provided photo with 
 
 ## Visitor map
 
-The compact map below Skills uses the owner's MapMyVisitors widget, with a white background and pale blue land. Public statistics: https://mapmyvisitors.com/web/1c871 . The asynchronous script is the primary embed; the image alternative runs only when JavaScript is disabled, avoiding two counters on the same visit. The stats link remains available if the widget is blocked.
+The full-width map aligned with Skills uses the owner's MapMyVisitors widget, with a white background and pale blue land. Public statistics: https://mapmyvisitors.com/web/1c871 . The asynchronous script is the primary embed; the image alternative runs only when JavaScript is disabled, avoiding two counters on the same visit. The stats link remains available if the widget is blocked.
 
 MapMyVisitors processes visitor connections and supplies all map locations and counts. IP-based locations are approximate, and visit counts are not a verified count of individual people. Collection starts with installation; earlier homepage traffic is not recovered. Account credentials and visitor records are not stored in this repository. Full-IP availability and account-only visibility have not been verified in the owner's authenticated dashboard.
 

@@ -109,12 +109,13 @@ details[open] summary span { transform: rotate(45deg); }
 .skills > div:last-child { border-bottom: 0; padding-bottom: 0; }
 .skills dt { color: #50678c; font-size: .8125rem; font-weight: 500; }
 .skills dd { margin: 0; }
-.visitor-map { width: min(100%, 400px); margin: 54px auto 42px; padding: 18px; border: 1px solid transparent; border-radius: 20px; background: linear-gradient(#fff, #fff) padding-box, linear-gradient(120deg, #d7e7f7, #e5dcf1, #f1dfe9) border-box; box-shadow: 0 8px 30px #6477a009; }
+.visitor-map { width: 100%; margin: 48px 0 42px; padding: 18px; border: 1px solid transparent; border-radius: 20px; background: linear-gradient(#fff, #fff) padding-box, linear-gradient(120deg, #d7e7f7, #e5dcf1, #f1dfe9) border-box; box-shadow: 0 8px 30px #6477a009; }
 .visitor-map figcaption { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 16px; font-size: .75rem; color: var(--muted); }
 .visitor-map figcaption a { font-size: .6875rem; white-space: nowrap; }
 .visitor-map-embed { min-height: 160px; overflow: hidden; border-radius: 10px; }
-.visitor-map-embed img, .visitor-map-embed svg { max-width: 100%; height: auto; }
-.visitor-map #mapmyvisitors-widget { max-width: 100%; border-radius: 10px; overflow: hidden; }
+.visitor-map-embed img, .visitor-map-embed svg { display: block; width: 100%; max-width: 100%; height: auto; }
+.visitor-map .mapmyvisitors-map { zoom: var(--visitor-map-scale, 1); }
+.visitor-map #mapmyvisitors-widget { display: block; width: 100%; max-width: 100%; border-radius: 10px; overflow: hidden; }
 footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: .75rem; }
 footer a { color: var(--muted); }
 
@@ -168,7 +169,7 @@ body.page-hidden::before, body.page-hidden h1, body.page-hidden .portrait-wrap::
   #about .intro { font-size: 1.25rem; }
   .entry { padding: 20px; border-radius: 17px; }
   .school { gap: 14px; }
-  .visitor-map { margin: 44px auto 36px; padding: 16px; }
+  .visitor-map { margin: 38px 0 36px; padding: 16px; }
 }
 @media (max-width: 640px) {
   :root { --topbar-height: 109px; }

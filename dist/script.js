@@ -14,8 +14,24 @@ if (visitorEmbed) {
     ).replace(/\s+-\s+/g, ' – ');
     if (numeric !== date.textContent) date.textContent = numeric;
   };
-  new MutationObserver(formatVisitorDate).observe(visitorEmbed, { childList: true, subtree: true, characterData: true });
+  // Scale the provider's fixed-size map and its markers together after layout changes.
+  const fitVisitorMap = () => {
+    const map = visitorEmbed.querySelector('.mapmyvisitors-map');
+    if (!map) return;
+    const nativeWidth = parseFloat(map.style.width);
+    const availableWidth = visitorEmbed.clientWidth;
+    if (nativeWidth > 0 && availableWidth > 0) {
+      map.style.setProperty('--visitor-map-scale', String(availableWidth / nativeWidth));
+    }
+  };
+  new MutationObserver(() => {
+    formatVisitorDate();
+    fitVisitorMap();
+  }).observe(visitorEmbed, { childList: true, subtree: true, characterData: true });
+  if ('ResizeObserver' in window) new ResizeObserver(fitVisitorMap).observe(visitorEmbed);
+  else window.addEventListener('resize', fitVisitorMap, { passive: true });
   formatVisitorDate();
+  fitVisitorMap();
 }
 
 const copy = document.querySelector('[data-copy-email]');
