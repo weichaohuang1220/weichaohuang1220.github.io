@@ -1,4 +1,4 @@
-name: Publish demonstrations
+name: Publish personal website
 
 on:
   push:

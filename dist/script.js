@@ -1,5 +1,60 @@
 'use strict';
 
+document.getElementById('year').textContent = String(new Date().getFullYear());
+
+// Keep the provider's asynchronously rendered date range in numeric format.
+const visitorEmbed = document.querySelector('.visitor-map-embed');
+if (visitorEmbed) {
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const formatVisitorDate = () => {
+    const date = visitorEmbed.querySelector('.mapmyvisitors-date');
+    if (!date) return;
+    const numeric = date.textContent.replace(/\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\.?\s+(\d{1,2})(?:st|nd|rd|th)?\b/g,
+      (_, month, day) => `${String(months.indexOf(month) + 1).padStart(2, '0')}.${day.padStart(2, '0')}`
+    ).replace(/\s+-\s+/g, ' – ');
+    if (numeric !== date.textContent) date.textContent = numeric;
+  };
+  new MutationObserver(formatVisitorDate).observe(visitorEmbed, { childList: true, subtree: true, characterData: true });
+  formatVisitorDate();
+}
+
+const copy = document.querySelector('[data-copy-email]');
+const status = document.querySelector('.copy-status');
+let statusTimer;
+copy.addEventListener('click', async () => {
+  clearTimeout(statusTimer);
+  try {
+    await navigator.clipboard.writeText(copy.dataset.copyEmail);
+    status.textContent = 'Email copied.';
+  } catch {
+    status.textContent = 'Select the email address to copy it.';
+  }
+  statusTimer = setTimeout(() => { status.textContent = ''; }, 4000);
+});
+
+// Add verified news as { date: "YYYY-MM-DD", text: "..." } in #news-data.
+const news = JSON.parse(document.getElementById('news-data').textContent);
+const list = document.querySelector('.news-list');
+const newsWindow = document.querySelector('.news-window');
+news.sort((a, b) => b.date.localeCompare(a.date)).forEach(item => {
+  const row = document.createElement('li');
+  const date = document.createElement('time');
+  date.dateTime = item.date;
+  date.textContent = item.date.slice(0, 7).replace('-', '.');
+  const body = document.createElement('p');
+  body.textContent = item.text;
+  row.append(date, body);
+  list.append(row);
+});
+list.hidden = news.length === 0;
+document.querySelector('.empty-news').hidden = news.length > 0;
+function updateNewsFocus() {
+  if (newsWindow.scrollHeight > newsWindow.clientHeight) newsWindow.tabIndex = 0;
+  else newsWindow.removeAttribute('tabindex');
+}
+updateNewsFocus();
+window.addEventListener('resize', updateNewsFocus, { passive: true });
+
 const sections = [...document.querySelectorAll('main section[aria-labelledby]')];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let reveal;
@@ -98,7 +153,7 @@ document.addEventListener('visibilitychange', () => {
 
 // Pointer feedback runs only on fine pointers and never creates a continuous loop.
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-document.querySelectorAll('.entry').forEach(surface => {
+document.querySelectorAll('.portrait-wrap, .entry, .school').forEach(surface => {
   let bounds;
   let frame;
   let x = 0.5;
