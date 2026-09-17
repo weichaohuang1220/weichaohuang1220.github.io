@@ -399,4 +399,10 @@ body.page-hidden::before, body.page-hidden h1, body.page-hidden .portrait-wrap::
 .use-case-step { display: grid; place-items: center; flex: 0 0 26px; height: 26px; border-radius: 50%; background: #e8edfb; color: #6a78a2; font-size: .75rem; font-variant-numeric: tabular-nums; }
 .use-case strong { display: block; color: #4a5870; font-size: .875rem; line-height: 1.8; }
 .use-case li p { margin: 5px 0 0; color: #626e82; font-size: .875rem; line-height: 1.65; overflow-wrap: anywhere; }
+.use-case .use-case-note { margin: 18px 0 0; color: #758097; font-size: .75rem; line-height: 1.7; }
+.reproduce-example { margin-block: 16px; }
+.reproduce-example .detail-body { min-width: 0; }
+.reproduce-example pre { max-width: 100%; overflow-x: auto; padding: 16px; border: 1px solid #e2e7f1; border-radius: 12px; background: #f6f8fc; color: #485873; font-size: .8125rem; line-height: 1.8; white-space: pre-wrap; overflow-wrap: anywhere; }
+.reproduce-example ol { padding-left: 22px; }
+.reproduce-example li { padding-left: 4px; margin-bottom: 10px; }
 @media (max-width: 760px) { .use-case { padding: 16px; } .use-case ol { grid-template-columns: 1fr; gap: 18px; } }

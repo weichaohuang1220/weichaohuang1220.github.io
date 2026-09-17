@@ -56,9 +56,9 @@ The current projects are MiniMind (2026.03–2026.06) and ChatMind (2025.12–20
 
 Each project has a native “View animation” disclosure that expands inline. DynaFace has four independent scenes (capture, upload, inference, results); MiniMind has five (pre-training, SFT, LoRA, DPO, GRPO); ChatMind has five (Think, Execute, pgvector retrieval, model switching, SSE streaming). Each step uses its own illustration and motion. Step buttons allow direct selection, with automatic playback and a pause control. Playback stops when closed, offscreen, or in a hidden tab. Reduced-motion preferences disable animation and automatic playback while retaining manual step selection.
 
-Each scene includes a concrete illustrative example: a synthetic video job for DynaFace, an English arithmetic training example for MiniMind, and a fictional meeting-room guide lookup for ChatMind. Automatic steps allow 8.5 seconds for reading. These are authored examples, not recorded runs or verified model outputs.
+DynaFace uses a synthetic video job; MiniMind retains conceptual English arithmetic training scenes; ChatMind uses the supplied fictional Cedar room policy. Automatic steps allow 8.5 seconds for reading. These animation scenes are authored explanations, not recorded runs. The separate RMSNorm component example has been executed using the linked source implementation.
 
-These workflow illustrations are schematic, not actual app screenshots, patient images, training measurements, or generated task results. MiniMind and ChatMind use the owner-provided detailed Chinese resume only as an animation reference. That reference is not published; website dates continue to follow `WH-resume.pdf`.
+These workflow illustrations are schematic, not actual app screenshots, patient images, training measurements, or generated task results. MiniMind training scenes use the owner-provided detailed Chinese resume as an animation reference. ChatMind examples have also been checked against the public repository code. That reference is not published; website dates continue to follow `WH-resume.pdf`.
 
 When updating the source resume, check the homepage biography, dates, experience, projects, skills, metadata, and contact links against the new file. Display only the Gmail contact on the homepage; do not re-add the phone number or school email. Git commits use a generic maintainer identity.
 
@@ -84,3 +84,12 @@ All visitor-facing content, including animation examples, must remain in English
 The Minnesota education entry shows the school and degree only; omit its attendance dates from the homepage.
 
 Each experience/project card includes a visible, three-step illustrative use case before the implementation details and animations. These authored scenarios explain the workflow, not measured model performance or recorded outputs.
+
+## Repository-based examples (2026-09-16)
+
+- MiniMind links to `llm-from-scratch` at `f7f344204c90483357f4aed7687f0c8063323eeb`. Its public code is a component reimplementation; it contains no trained checkpoint. Generation references a missing `new` package, and the RoPE chapter has an incomplete interface. Do not present authored chatbot answers as outputs from that checkout.
+- `dist/examples/rmsnorm_demo.py` invokes the unmodified RMSNorm class via `runpy`, verifies two input vectors against numerical expectations, and prints the result. Executed successfully on CPU with Python 3.12 and PyTorch 2.14.0.
+- ChatMind reviewed at `2e144959e33b8978c71a77c2cd82ac4317acd8a5`: checked Markdown parsing and upload/indexing, knowledge-base attachment, the fixed KnowledgeTool, retrieval and reranking, model registration, and SSE message definitions.
+- `dist/examples/room-guide.md` is a fictional input fixture. `dist/examples/chatmind-walkthrough.md` explains configuration and expected results for an existing working installation. The full backend/LLM flow was not executed. No credentials or real room bookings are involved.
+- ChatMind currently embeds section titles and retrieves up to five candidates before reranking to up to three. Upload success does not prove indexing succeeded; indexing exceptions are logged. The repository lacks the base-schema bootstrap, so V3/V4 alone are insufficient for a fresh database.
+- Public repository contents substantiate the examples; the owner-provided resume remains the source for biography, experience dates, and the training experience description.
