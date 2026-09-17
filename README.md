@@ -56,11 +56,11 @@ The current projects are MiniMind (2026.03–2026.06) and ChatMind (2025.12–20
 
 Each project has a native inline animation disclosure. DynaFace retains four scenes. MiniMind shows a persistent training map with eight narrated steps, using an illustrative dinner-planning conversation with ingredient, dietary, timing and equipment constraints. The map covers curation, tokenization, broad-text pretraining, SFT, optional LoRA, alternative DPO/GRPO branches, held-out evaluation, and export. Its nodes are half their previous width and height, with unchanged font sizes and rerouted connections. The authored replies, preference pairs and rubric illustrate training concepts; they are not dataset records, checkpoint outputs or measured training results. The earlier arithmetic and RMSNorm examples are no longer displayed.
 
-ChatMind keeps its full architecture and adds a visible observation-to-action loop. Its default seven-step story illustrates two searches: an initially unhelpful focus on equipment, followed by a more specific policy query. The excerpt is not a complete tool response; the actual tiny fixture may retrieve all sections in the first call. This animation demonstrates model-dependent iteration, not a deterministic replay of backend logs. Module labels have short names and one or two key points. The Setup step and configuration node have been removed.
+ChatMind uses a single ten-step animation: Think, Act, Observe, Retry, Answer, Check, Context, Recover, Delegate, Replay. Task execution flows directly into proposed harness iteration on one shared architecture. The 12 modules each display one short label; MiniMind nodes also use only one short label. Separate mode controls, the Return stage and the public engineering-reference section are removed. Evaluation and verification share one module; context selection reuses Tools and Memory. Streaming is represented by the shared API/interface path.
 
-A separate six-step Harness evolution mode illustrates recording failures, adjusting context, checkpointed and isolated execution, optional specialists, independent verification, and regression replay. Dashed amber modules are proposed extensions, not implemented ChatMind capabilities. Current repository features include the bounded Think–Execute loop, tool-result memory, configurable tools/skills, confirmation, retrieval/reranking, compression, persistence, SSE and retrieval evaluation. Current chat persistence is not a claim of durable execution checkpoints.
+The initial task illustrates a refined search for a room-booking policy. Excerpts are not complete tool responses; the tiny fixture may retrieve all sections in the first call. This is a scripted explanation, not a backend replay. Harness steps remain explicitly proposed: answer checks, context selection, checkpointed recovery, optional workers, and regression replay. Amber dashed paths and the Recovery/Workers modules mark proposed additions. Existing retrieval evaluation does not imply implemented answer verification, and chat persistence does not imply execution checkpoints.
 
-The data-driven walkthrough controller supports mode selection, manual steps, pause, replay after completion, offscreen/hidden-tab pausing, and reduced-motion preferences. A complete pass stops at the final step. Without JavaScript, maps and every explanation remain readable.
+The data-driven walkthrough controller supports manual steps, pause, replay after completion, offscreen/hidden-tab pausing, and reduced-motion preferences. A complete pass stops at the final step. Without JavaScript, maps and every explanation remain readable.
 
 These illustrations are schematic. The owner-provided English resume remains the source for personal information and dates; the detailed Chinese reference is not published.
 
@@ -100,7 +100,7 @@ DynaFace keeps its introductory use case. MiniMind and ChatMind omit the separat
 
 ## Research basis for harness illustrations (reviewed 2026.09)
 
-The website links primary sources for the concepts. These are selected engineering patterns, not an assertion that one agent is state of the art on every benchmark. No backend project changes or model training were performed in this update.
+The primary sources below document the proposed concepts; the public reference section was removed at the owner’s request. These are selected engineering patterns, not an assertion that one agent is state of the art on every benchmark. No backend project changes or model training were performed in this update.
 
 - Harness design (2026.03.24): https://www.anthropic.com/engineering/harness-design-long-running-apps — independent evaluation and iterative harness changes.
 - Agent evaluation (2026.01.09): https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents — trajectories, outcome checks and regression suites.
@@ -109,4 +109,4 @@ The website links primary sources for the concepts. These are selected engineeri
 - Advanced tools (2025.11.24): https://www.anthropic.com/engineering/advanced-tool-use — on-demand tool discovery.
 - Specialist delegation (2025.06.13): https://www.anthropic.com/engineering/multi-agent-research-system — use independent workers only when task structure warrants them.
 
-The ChatMind map uses two-thirds of its former vertical space, with node positions, heights and connectors compressed together. Node titles and explanatory text retain their font sizes; former category labels are available as SVG tooltips. Both project overview cards and the standalone run/setup sections are removed.
+The ChatMind diagram now integrates existing and proposed components in one compact map. Nodes have centered labels, with explanations shown only for the current animation step. The MiniMind nodes retain their half-size geometry. Both project overview cards and standalone run/setup sections remain removed.
