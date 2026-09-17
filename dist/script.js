@@ -203,7 +203,7 @@ document.querySelectorAll('.portrait-wrap, .entry, .school').forEach(surface => 
 
 
 // Inline demos: independent scenes, manual selection, and pausable playback.
-document.querySelectorAll('.project-demo').forEach(demo => {
+document.querySelectorAll('.project-demo:not([data-architecture])').forEach(demo => {
   const panels = [...demo.querySelectorAll('.demo-panel')];
   const buttons = [...demo.querySelectorAll('[data-demo-step]')];
   const play = demo.querySelector('.demo-play');
@@ -227,6 +227,58 @@ document.querySelectorAll('.project-demo').forEach(demo => {
     sync();
   }
   buttons.forEach((button, i) => button.addEventListener('click', () => select(i)));
+  play.addEventListener('click', () => { playing = !playing; sync(); });
+  demo.addEventListener('toggle', () => {
+    playing = demo.open && !reducedMotion.matches;
+    if (demo.open) select(0);
+    else sync();
+  });
+  document.addEventListener('visibilitychange', sync);
+  reducedMotion.addEventListener('change', () => { if (reducedMotion.matches) playing = false; sync(); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(entries => { inView = entries[0].isIntersecting; sync(); }, { threshold: .05 }).observe(demo);
+  }
+  demo.querySelector('.demo-controls').hidden = false;
+  select(0);
+});
+
+// Keep the entire architecture visible while tracing one request through it.
+document.querySelectorAll('[data-architecture]').forEach(demo => {
+  const steps = [
+    { nodes: ['ingest', 'database'], routes: ['ingest'] },
+    { nodes: ['client', 'api', 'config', 'agent'], routes: ['request', 'dispatch', 'configure'] },
+    { nodes: ['agent', 'model', 'memory'], routes: ['model', 'memory'] },
+    { nodes: ['agent', 'tools', 'rag', 'database'], routes: ['tool', 'retrieve', 'search'] },
+    { nodes: ['rag', 'model', 'agent'], routes: ['rerank', 'context'] },
+    { nodes: ['agent', 'model'], routes: ['model'] },
+    { nodes: ['agent', 'sse', 'client'], routes: ['events', 'stream'] },
+  ];
+  const buttons = [...demo.querySelectorAll('[data-architecture-step]')];
+  const captions = [...demo.querySelectorAll('[data-caption]')];
+  const play = demo.querySelector('.demo-play');
+  let index = 0;
+  let playing = false;
+  let inView = true;
+  let timer;
+  function sync() {
+    clearTimeout(timer);
+    const running = demo.open && playing && inView && !document.hidden && !reducedMotion.matches;
+    demo.classList.toggle('demo-running', running);
+    play.textContent = playing ? 'Pause' : 'Play';
+    play.setAttribute('aria-label', playing ? 'Pause architecture walkthrough' : 'Play architecture walkthrough');
+    play.disabled = reducedMotion.matches;
+    if (running) timer = setTimeout(() => select((index + 1) % steps.length), 6500);
+  }
+  function select(next) {
+    index = next;
+    const step = steps[index];
+    demo.querySelectorAll('[data-node]').forEach(node => node.classList.toggle('is-active', step.nodes.includes(node.dataset.node)));
+    demo.querySelectorAll('[data-route]').forEach(route => route.classList.toggle('is-active', step.routes.includes(route.dataset.route)));
+    captions.forEach((caption, i) => { caption.hidden = i !== index; });
+    buttons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
+    sync();
+  }
+  buttons.forEach((button, i) => button.addEventListener('click', () => { playing = false; select(i); }));
   play.addEventListener('click', () => { playing = !playing; sync(); });
   demo.addEventListener('toggle', () => {
     playing = demo.open && !reducedMotion.matches;

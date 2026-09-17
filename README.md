@@ -54,9 +54,9 @@ The website uses the owner-provided `WH-resume.pdf` as its factual source. The r
 
 The current projects are MiniMind (2026.03–2026.06) and ChatMind (2025.12–2026.02). DynaFace includes account security and patient data-visibility controls. Parallel Programming remains coursework in the PDF and is not presented as a research direction on the homepage.
 
-Each project has a native “View animation” disclosure that expands inline. DynaFace has four independent scenes (capture, upload, inference, results); MiniMind has five (pre-training, SFT, LoRA, DPO, GRPO); ChatMind has five (Think, Execute, pgvector retrieval, model switching, SSE streaming). Each step uses its own illustration and motion. Step buttons allow direct selection, with automatic playback and a pause control. Playback stops when closed, offscreen, or in a hidden tab. Reduced-motion preferences disable animation and automatic playback while retaining manual step selection.
+Each project has a native “View animation” disclosure that expands inline. DynaFace has four independent scenes (capture, upload, inference, results); MiniMind has five (pre-training, SFT, LoRA, DPO, GRPO); ChatMind uses one persistent, full-width architecture diagram with 12 modules and seven highlighted stages: Index, Ask, Plan, Retrieve, Rerank, Answer, Stream. Its nodes remain visible throughout; only highlighted connections change. DynaFace and MiniMind keep their separate scenes. Step buttons allow direct selection, with automatic playback and a pause control. Playback stops when closed, offscreen, or in a hidden tab. Reduced-motion preferences disable animation and automatic playback while retaining manual step selection.
 
-DynaFace uses a synthetic video job; MiniMind retains conceptual English arithmetic training scenes; ChatMind uses the supplied fictional Cedar room policy. Automatic steps allow 8.5 seconds for reading. These animation scenes are authored explanations, not recorded runs. The separate RMSNorm component example has been executed using the linked source implementation.
+DynaFace uses a synthetic video job; MiniMind retains conceptual English arithmetic training scenes; ChatMind uses the supplied fictional Cedar room policy. DynaFace and MiniMind allow 8.5 seconds per automatic step; ChatMind allows 6.5 seconds and pauses on manual step selection. These animation scenes are authored explanations, not recorded runs. The separate RMSNorm component example has been executed using the linked source implementation.
 
 These workflow illustrations are schematic, not actual app screenshots, patient images, training measurements, or generated task results. MiniMind training scenes use the owner-provided detailed Chinese resume as an animation reference. ChatMind examples have also been checked against the public repository code. That reference is not published; website dates continue to follow `WH-resume.pdf`.
 
@@ -83,7 +83,7 @@ All visitor-facing content, including animation examples, must remain in English
 
 The Minnesota education entry shows the school and degree only; omit its attendance dates from the homepage.
 
-Each experience/project card includes a visible, three-step illustrative use case before the implementation details and animations. These authored scenarios explain the workflow, not measured model performance or recorded outputs.
+Each experience/project card includes a visible, three-step overview before the details and animations. The RMSNorm example contains verified numerical output; the DynaFace and ChatMind scenarios remain illustrative.
 
 ## Repository-based examples (2026-09-16)
 
@@ -93,3 +93,5 @@ Each experience/project card includes a visible, three-step illustrative use cas
 - `dist/examples/room-guide.md` is a fictional input fixture. `dist/examples/chatmind-walkthrough.md` explains configuration and expected results for an existing working installation. The full backend/LLM flow was not executed. No credentials or real room bookings are involved.
 - ChatMind currently embeds section titles and retrieves up to five candidates before reranking to up to three. Upload success does not prove indexing succeeded; indexing exceptions are logged. The repository lacks the base-schema bootstrap, so V3/V4 alone are insufficient for a fresh database.
 - Public repository contents substantiate the examples; the owner-provided resume remains the source for biography, experience dates, and the training experience description.
+
+The ChatMind architecture diagram includes React, API/event handling, runtime configuration, the Agent loop, model registry, memory, tool dispatch with conditional confirmation, retrieval/reranking, PostgreSQL data, document ingestion, offline evaluation, and SSE. Document ingestion feeds the data store directly; reranking invokes DeepSeek. The SSE return path represents updates throughout execution, not a post-processing-only phase. Narrow screens can scroll the diagram horizontally while labels retain their size. Without JavaScript, the full static diagram and all seven explanations remain available.

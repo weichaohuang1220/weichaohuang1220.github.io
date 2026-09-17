@@ -405,4 +405,28 @@ body.page-hidden::before, body.page-hidden h1, body.page-hidden .portrait-wrap::
 .reproduce-example pre { max-width: 100%; overflow-x: auto; padding: 16px; border: 1px solid #e2e7f1; border-radius: 12px; background: #f6f8fc; color: #485873; font-size: .8125rem; line-height: 1.8; white-space: pre-wrap; overflow-wrap: anywhere; }
 .reproduce-example ol { padding-left: 22px; }
 .reproduce-example li { padding-left: 4px; margin-bottom: 10px; }
+.architecture-intro { margin: 0 0 14px; color: #697792; font-size: 14px; }
+.architecture-viewport { width: 100%; overflow-x: auto; border: 1px solid #e2e7f1; border-radius: 16px; background: linear-gradient(120deg, #f7faff, #fff 50%, #faf7ff); }
+.architecture-viewport:focus-visible { outline: 2px solid #8f9de1; outline-offset: 4px; }
+.architecture-svg { display: block; width: 100%; min-width: 860px; font-family: var(--sans); }
+.architecture-node rect { fill: #fff; stroke: #dce3ee; stroke-width: 1.5; transition: fill .4s, stroke .4s; }
+.architecture-node[data-node="agent"] rect { fill: #f5f1ff; stroke: #cec2ed; }
+.architecture-node.is-active rect { fill: #eef2ff; stroke: #899cda; stroke-width: 2.5; }
+.architecture-node.is-active[data-node="agent"] rect { fill: #ebe3ff; stroke: #ad90dc; }
+.architecture-kicker { fill: #7c89a0; font-size: 10px; letter-spacing: 1px; font-weight: 600; }
+.architecture-title { fill: #3f4f6a; font-size: 17px; font-weight: 600; }
+.architecture-copy { fill: #687890; font-size: 12px; }
+.architecture-route { fill: none; stroke: #ccd6e5; stroke-width: 1.7; stroke-linejoin: round; }
+.architecture-route.is-active { stroke: #8398d8; stroke-width: 3; stroke-dasharray: 9 5; }
+.architecture-legend { fill: #7c89a0; font-size: 12px; }
+.architecture-caption { margin-top: 16px; padding: 18px 20px; border: 1px solid #e0e6f0; border-radius: 12px; background: #fff; min-height: 122px; }
+.architecture-caption strong { color: #56658d; font-size: 15px; }
+.architecture-caption p { margin: 8px 0 0; color: #697792; font-size: 14px; line-height: 1.7; }
+.architecture-caption-step:not([hidden]) ~ .architecture-caption-step:not([hidden]) { margin-top: 14px; }
+.architecture-scroll-hint { display: none; color: #7a8498; font-size: 12px; }
+@container (max-width: 860px) { .architecture-scroll-hint { display: block; } }
+@media (prefers-reduced-motion: no-preference) {
+  .architecture-demo.demo-running .architecture-route.is-active { animation: architecture-flow 1.4s linear infinite; }
+}
+@keyframes architecture-flow { to { stroke-dashoffset: -28; } }
 @media (max-width: 760px) { .use-case { padding: 16px; } .use-case ol { grid-template-columns: 1fr; gap: 18px; } }
