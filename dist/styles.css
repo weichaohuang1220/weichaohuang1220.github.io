@@ -424,6 +424,30 @@ body.page-hidden::before, body.page-hidden h1, body.page-hidden .portrait-wrap::
 .architecture-caption p { margin: 8px 0 0; color: #697792; font-size: 14px; line-height: 1.7; }
 .architecture-caption-step:not([hidden]) ~ .architecture-caption-step:not([hidden]) { margin-top: 14px; }
 .architecture-scroll-hint { display: none; color: #7a8498; font-size: 12px; }
+.flow-controls { flex-wrap: wrap; }
+.flow-modes { flex: 0 0 100%; display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 8px; }
+.flow-modes button { border: 1px solid #dfe5ef; border-radius: 11px; background: #fff; color: #68758c; padding: 10px 14px; font: 500 14px/1.5 var(--sans); cursor: pointer; }
+.flow-modes button[aria-pressed=true] { border-color: #c7d1ec; background: #eaf0ff; color: #536b9f; }
+.flow-context { margin: 0 0 16px; color: #5b6b85; font-size: 16px; line-height: 1.7; }
+.dataset-example { display: grid; gap: 8px; margin-bottom: 18px; padding: 18px 20px; border-radius: 14px; border: 1px solid #dce5f5; background: #fff; }
+.dataset-example span { color: #75839a; font-size: 12px; }
+.dataset-example p { margin: 0; color: #4d5c74; font-size: 16px; line-height: 1.65; }
+.dataset-example strong { color: #6975b4; font-size: 16px; }
+.flow-caption { min-height: 175px; }
+.flow-caption strong { display: block; font-size: 17px; }
+.flow-caption p { font-size: 16px; }
+.flow-badge { display: inline-block; margin-bottom: 9px; padding: 4px 9px; border-radius: 7px; color: #667cab; background: #eef3ff; font-size: 12px; }
+.flow-example { margin-top: 12px; padding-top: 12px; border-top: 1px solid #e8edf5; color: #536583; font-size: 14px; line-height: 1.8; }
+.flow-progress { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin: 0 0 16px; color: #79859b; font-size: 12px; }
+.flow-progress [data-flow-progress] { color: #5c6f9c; font-size: 14px; font-weight: 600; }
+.proposed-node rect { fill: #fffaf0; stroke: #c4a16b; stroke-dasharray: 6 4; }
+.proposed-node.is-active rect { fill: #fff0cd; stroke: #c3974e; }
+.proposed-route { stroke: #cfb790; stroke-dasharray: 5 5; }
+.proposed-route.is-active { stroke: #b38949; }
+.architecture-demo[data-mode=loop] .proposed-node { opacity: .55; }
+.reference-notes { margin-top: 16px; }
+.reference-notes .detail-body { font-size: 14px; }
+.reference-notes li { margin-bottom: 10px; }
 @container (max-width: 860px) { .architecture-scroll-hint { display: block; } }
 @media (prefers-reduced-motion: no-preference) {
   .architecture-demo.demo-running .architecture-route.is-active { animation: architecture-flow 1.4s linear infinite; }

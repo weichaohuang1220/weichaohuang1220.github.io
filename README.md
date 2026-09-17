@@ -54,11 +54,15 @@ The website uses the owner-provided `WH-resume.pdf` as its factual source. The r
 
 The current projects are MiniMind (2026.03–2026.06) and ChatMind (2025.12–2026.02). DynaFace includes account security and patient data-visibility controls. Parallel Programming remains coursework in the PDF and is not presented as a research direction on the homepage.
 
-Each project has a native “View animation” disclosure that expands inline. DynaFace has four independent scenes (capture, upload, inference, results); MiniMind has five (pre-training, SFT, LoRA, DPO, GRPO); ChatMind uses one persistent, full-width architecture diagram with 12 modules and seven highlighted stages: Index, Ask, Plan, Retrieve, Rerank, Answer, Stream. Its nodes remain visible throughout; only highlighted connections change. DynaFace and MiniMind keep their separate scenes. Step buttons allow direct selection, with automatic playback and a pause control. Playback stops when closed, offscreen, or in a hidden tab. Reduced-motion preferences disable animation and automatic playback while retaining manual step selection.
+Each project has a native inline animation disclosure. DynaFace retains four scenes. MiniMind now shows a complete, persistent training map with eight narrated steps, using an adapted GSM8K training example (48 clips in April, 24 in May, reference answer 72). The map covers curation, tokenization, broad-text pretraining, SFT, optional LoRA, alternative DPO/GRPO branches, held-out evaluation, and export. The derived preference pairs and candidate answers are teaching illustrations, not original dataset labels or checkpoint outputs. No GSM8K training run or evaluation score is claimed. The earlier RMSNorm walkthrough is no longer displayed.
 
-DynaFace uses a synthetic video job; MiniMind retains conceptual English arithmetic training scenes; ChatMind uses the supplied fictional Cedar room policy. DynaFace and MiniMind allow 8.5 seconds per automatic step; ChatMind allows 6.5 seconds and pauses on manual step selection. These animation scenes are authored explanations, not recorded runs. The separate RMSNorm component example has been executed using the linked source implementation.
+ChatMind keeps its full architecture and adds a visible observation-to-action loop. Its default eight-step story illustrates two searches: an initially unhelpful focus on equipment, followed by a more specific policy query. The excerpt is not a complete tool response; the actual tiny fixture may retrieve all sections in the first call. This animation demonstrates model-dependent iteration, not a deterministic replay of backend logs.
 
-These workflow illustrations are schematic, not actual app screenshots, patient images, training measurements, or generated task results. MiniMind training scenes use the owner-provided detailed Chinese resume as an animation reference. ChatMind examples have also been checked against the public repository code. That reference is not published; website dates continue to follow `WH-resume.pdf`.
+A separate six-step Harness evolution mode illustrates recording failures, adjusting context, checkpointed and isolated execution, optional specialists, independent verification, and regression replay. Dashed amber modules are proposed extensions, not implemented ChatMind capabilities. Current repository features include the bounded Think–Execute loop, tool-result memory, configurable tools/skills, confirmation, retrieval/reranking, compression, persistence, SSE and retrieval evaluation. Current chat persistence is not a claim of durable execution checkpoints.
+
+The data-driven walkthrough controller supports mode selection, manual steps, pause, replay after completion, offscreen/hidden-tab pausing, and reduced-motion preferences. A complete pass stops at the final step. Without JavaScript, maps and every explanation remain readable.
+
+These illustrations are schematic. The owner-provided English resume remains the source for personal information and dates; the detailed Chinese reference is not published.
 
 When updating the source resume, check the homepage biography, dates, experience, projects, skills, metadata, and contact links against the new file. Display only the Gmail contact on the homepage; do not re-add the phone number or school email. Git commits use a generic maintainer identity.
 
@@ -83,7 +87,7 @@ All visitor-facing content, including animation examples, must remain in English
 
 The Minnesota education entry shows the school and degree only; omit its attendance dates from the homepage.
 
-Each experience/project card includes a visible, three-step overview before the details and animations. The RMSNorm example contains verified numerical output; the DynaFace and ChatMind scenarios remain illustrative.
+DynaFace keeps its introductory use case. MiniMind and ChatMind omit the separate example cards and run/setup instructions; their examples appear within the animations.
 
 ## Repository-based examples (2026-09-16)
 
@@ -94,4 +98,16 @@ Each experience/project card includes a visible, three-step overview before the 
 - ChatMind currently embeds section titles and retrieves up to five candidates before reranking to up to three. Upload success does not prove indexing succeeded; indexing exceptions are logged. The repository lacks the base-schema bootstrap, so V3/V4 alone are insufficient for a fresh database.
 - Public repository contents substantiate the examples; the owner-provided resume remains the source for biography, experience dates, and the training experience description.
 
-The ChatMind architecture diagram includes React, API/event handling, runtime configuration, the Agent loop, model registry, memory, tool dispatch with conditional confirmation, retrieval/reranking, PostgreSQL data, document ingestion, offline evaluation, and SSE. Document ingestion feeds the data store directly; reranking invokes DeepSeek. The SSE return path represents updates throughout execution, not a post-processing-only phase. Narrow screens can scroll the diagram horizontally while labels retain their size. Without JavaScript, the full static diagram and all seven explanations remain available.
+## Research basis for harness illustrations (reviewed 2026.09)
+
+The website links primary sources for the concepts. These are selected engineering patterns, not an assertion that one agent is state of the art on every benchmark. No backend project changes or model training were performed in this update.
+
+- GSM8K: https://github.com/openai/grade-school-math — verified the first training JSONL item and its reference answer of 72. Pretraining is illustrated as broad-corpus learning, not training only on GSM8K.
+- Harness design (2026.03.24): https://www.anthropic.com/engineering/harness-design-long-running-apps — independent evaluation and iterative harness changes.
+- Agent evaluation (2026.01.09): https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents — trajectories, outcome checks and regression suites.
+- Managed-agent architecture (2026.04.08): https://www.anthropic.com/engineering/managed-agents — separate sessions, harnesses and execution environments.
+- Persistence: https://docs.langchain.com/oss/python/langgraph/persistence — checkpoints and recovery.
+- Advanced tools (2025.11.24): https://www.anthropic.com/engineering/advanced-tool-use — on-demand tool discovery.
+- Specialist delegation (2025.06.13): https://www.anthropic.com/engineering/multi-agent-research-system — use independent workers only when task structure warrants them.
+
+The ChatMind map uses two-thirds of its former vertical space, with node positions, heights and connectors compressed together. Node titles and explanatory text retain their font sizes; former category labels are available as SVG tooltips. Both project overview cards and the standalone run/setup sections are removed.

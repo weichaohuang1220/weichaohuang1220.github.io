@@ -242,20 +242,17 @@ document.querySelectorAll('.project-demo:not([data-architecture])').forEach(demo
   select(0);
 });
 
-// Keep the entire architecture visible while tracing one request through it.
+// Data-driven walkthroughs keep the full map visible across steps and modes.
 document.querySelectorAll('[data-architecture]').forEach(demo => {
-  const steps = [
-    { nodes: ['ingest', 'database'], routes: ['ingest'] },
-    { nodes: ['client', 'api', 'config', 'agent'], routes: ['request', 'dispatch', 'configure'] },
-    { nodes: ['agent', 'model', 'memory'], routes: ['model', 'memory'] },
-    { nodes: ['agent', 'tools', 'rag', 'database'], routes: ['tool', 'retrieve', 'search'] },
-    { nodes: ['rag', 'model', 'agent'], routes: ['rerank', 'context'] },
-    { nodes: ['agent', 'model'], routes: ['model'] },
-    { nodes: ['agent', 'sse', 'client'], routes: ['events', 'stream'] },
-  ];
-  const buttons = [...demo.querySelectorAll('[data-architecture-step]')];
+  const config = JSON.parse(demo.querySelector('[data-flow-config]').textContent);
+  const modeNames = Object.keys(config);
+  const modeButtons = [...demo.querySelectorAll('[data-flow-mode]')];
+  const buttons = [...demo.querySelectorAll('[data-flow-step]')];
+  const groups = [...demo.querySelectorAll('[data-step-group]')];
   const captions = [...demo.querySelectorAll('[data-caption]')];
   const play = demo.querySelector('.demo-play');
+  const progress = demo.querySelector('[data-flow-progress]');
+  let mode = modeNames[0];
   let index = 0;
   let playing = false;
   let inView = true;
@@ -264,22 +261,44 @@ document.querySelectorAll('[data-architecture]').forEach(demo => {
     clearTimeout(timer);
     const running = demo.open && playing && inView && !document.hidden && !reducedMotion.matches;
     demo.classList.toggle('demo-running', running);
-    play.textContent = playing ? 'Pause' : 'Play';
-    play.setAttribute('aria-label', playing ? 'Pause architecture walkthrough' : 'Play architecture walkthrough');
+    play.textContent = playing ? 'Pause' : (index === config[mode].length - 1 ? 'Replay' : 'Play');
+    play.setAttribute('aria-label', playing ? 'Pause walkthrough' : 'Play walkthrough');
     play.disabled = reducedMotion.matches;
-    if (running) timer = setTimeout(() => select((index + 1) % steps.length), 6500);
+    if (running) timer = setTimeout(() => {
+      if (index + 1 < config[mode].length) select(index + 1);
+      else { playing = false; sync(); }
+    }, 7500);
   }
   function select(next) {
     index = next;
-    const step = steps[index];
+    const step = config[mode][index];
+    const selected = `${mode}:${index}`;
+    demo.dataset.mode = mode;
     demo.querySelectorAll('[data-node]').forEach(node => node.classList.toggle('is-active', step.nodes.includes(node.dataset.node)));
     demo.querySelectorAll('[data-route]').forEach(route => route.classList.toggle('is-active', step.routes.includes(route.dataset.route)));
-    captions.forEach((caption, i) => { caption.hidden = i !== index; });
-    buttons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
+    captions.forEach(caption => { caption.hidden = caption.dataset.caption !== selected; });
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.flowStep === selected)));
+    modeButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.flowMode === mode)));
+    groups.forEach(group => { group.hidden = group.dataset.stepGroup !== mode; });
+    if (progress) progress.textContent = step.badge;
     sync();
   }
-  buttons.forEach((button, i) => button.addEventListener('click', () => { playing = false; select(i); }));
-  play.addEventListener('click', () => { playing = !playing; sync(); });
+  buttons.forEach(button => button.addEventListener('click', () => {
+    const [nextMode, nextIndex] = button.dataset.flowStep.split(':');
+    mode = nextMode;
+    playing = false;
+    select(Number(nextIndex));
+  }));
+  modeButtons.forEach(button => button.addEventListener('click', () => {
+    mode = button.dataset.flowMode;
+    playing = false;
+    select(0);
+  }));
+  play.addEventListener('click', () => {
+    if (!playing && index === config[mode].length - 1) index = 0;
+    playing = !playing;
+    select(index);
+  });
   demo.addEventListener('toggle', () => {
     playing = demo.open && !reducedMotion.matches;
     if (demo.open) select(0);
