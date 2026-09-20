@@ -11,8 +11,8 @@
   <meta property="og:url" content="https://weichaohuang1220.github.io/">
   <link rel="canonical" href="https://weichaohuang1220.github.io/">
   <link rel="icon" href="assets/favicon.svg?v=20260917-pixel-chicken" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260920-spring-garden">
-  <script src="script.js?v=20260920-spring-garden" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260920-valley-details">
+  <script src="script.js?v=20260920-valley-details" defer></script>
   <title>Weichao Huang · Johns Hopkins University</title>
 </head>
 <body>
@@ -27,6 +27,7 @@
         <a href="#skills">Skills</a>
       </nav>
   </header>
+  <div class="valley-frame" aria-hidden="true"><span class="valley-frame-side frame-left"></span><span class="valley-frame-side frame-right"></span><span class="valley-frame-fence"></span><img class="frame-star" src="assets/valley-star.svg" alt="" width="30" height="30"><img class="frame-junimo" src="assets/spring-junimo.svg" alt="" width="28" height="32"></div>
   <div class="spring-petals" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="page">
     <main id="main">
@@ -169,12 +170,16 @@
   </div>
   <aside class="spring-radio" aria-label="Spring music">
     <div class="radio-panel" id="spring-radio-panel" hidden>
-      <div class="radio-heading"><div><span>STARDEW VALLEY</span><strong>It's A Big World Outside</strong></div><button class="radio-close" type="button" aria-label="Stop music and close player">×</button></div>
-      <div class="radio-embed" id="spring-radio-embed"><iframe title="Spring (It's A Big World Outside) by ConcernedApe" loading="lazy" src="https://bandcamp.com/EmbeddedPlayer/track=2400130546/size=small/bgcol=ffffff/linkcol=719166/artwork=none/transparent=true/" allow="autoplay"></iframe></div>
-      <a class="radio-credit" href="https://concernedape.bandcamp.com/track/spring-its-a-big-world-outside" target="_blank" rel="noopener noreferrer">ConcernedApe · Listen on Bandcamp ↗</a>
+      <div class="radio-heading"><div><span>STARDEW VALLEY</span><strong>The Valley Comes Alive</strong></div><button class="radio-close" type="button" aria-label="Close music details">×</button></div>
+      <label class="radio-volume" for="spring-volume"><span>Volume</span><input id="spring-volume" type="range" min="0" max="30" value="12"><output for="spring-volume">12%</output></label>
+      <div class="radio-embed"><iframe id="spring-player" title="Spring (The Valley Comes Alive) by ConcernedApe" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F232021152&amp;auto_play=false&amp;show_artwork=false&amp;show_comments=false&amp;show_playcount=false&amp;show_user=true&amp;visual=false&amp;color=%23719166" allow="autoplay"></iframe></div>
+      <a class="radio-credit" href="https://soundcloud.com/concernedape/spring-the-valley-comes-alive" target="_blank" rel="noopener noreferrer">ConcernedApe · Listen on SoundCloud ↗</a>
     </div>
-    <button class="radio-toggle" type="button" aria-controls="spring-radio-panel" aria-expanded="false" hidden><span class="radio-note" aria-hidden="true">♫</span><span>Spring radio</span><span class="radio-plus" aria-hidden="true">+</span></button>
-    <noscript><a class="radio-toggle" href="https://concernedape.bandcamp.com/track/spring-its-a-big-world-outside">♫ Spring music ↗</a></noscript>
+    <div class="radio-actions" hidden>
+      <button class="radio-toggle" type="button" aria-label="Pause spring music" aria-pressed="false" data-state="loading"><span class="radio-note" aria-hidden="true">♫</span><span class="radio-label">Spring · Loading</span><span class="radio-action-icon" aria-hidden="true">Ⅱ</span></button>
+      <button class="radio-settings" type="button" aria-label="Music volume and details" aria-controls="spring-radio-panel" aria-expanded="false"><svg aria-hidden="true" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 3v14M10 3v14M16 3v14"/><path d="M2 7h4M8 13h4M14 6h4" stroke-width="3"/></svg></button>
+    </div>
+    <noscript><a class="radio-toggle" href="https://soundcloud.com/concernedape/spring-the-valley-comes-alive">♫ Spring music ↗</a></noscript>
   </aside>
 </body>
 </html>

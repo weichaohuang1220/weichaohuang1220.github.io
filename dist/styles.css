@@ -478,15 +478,12 @@ h2 { gap: 12px; }
 .radio-toggle { display: flex; align-items: center; gap: 10px; min-height: 44px; border: 1px solid #dce7d6; border-radius: 15px; padding: 8px 14px; background: #fffffff2; box-shadow: 0 6px 24px #64795514; color: #557354; font: 500 13px/1.5 var(--sans); cursor: pointer; backdrop-filter: blur(18px); }
 .radio-toggle:hover { background: #f5faef; }
 .radio-note { font-size: 21px; color: #7fa577; line-height: 1; }
-.radio-plus { font-size: 19px; transition: transform .2s; }
-.radio-toggle[aria-expanded=true] .radio-plus { transform: rotate(45deg); }
-.radio-panel { width: min(340px, calc(100vw - 32px)); padding: 18px; border: 1px solid #dee8d8; border-radius: 18px; background: #fffffff7; box-shadow: 0 12px 48px #58685422; backdrop-filter: blur(22px); }
 .radio-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 15px; }
 .radio-heading span { display: block; color: #78916c; font-size: 9px; letter-spacing: .14em; margin-bottom: 5px; }
 .radio-heading strong { display: block; font-size: 14px; color: #4f634b; font-weight: 500; }
 .radio-close { flex: 0 0 32px; min-height: 32px; border: 0; border-radius: 8px; background: #f2f6ee; color: #64765d; cursor: pointer; font-size: 22px; line-height: 1; }
-.radio-embed { min-height: 42px; border-radius: 6px; background: #f8faf5; }
-.radio-embed iframe { display: block; width: 100%; height: 42px; border: 0; }
+.radio-embed { min-height: 166px; border-radius: 6px; background: #f8faf5; }
+.radio-embed iframe { display: block; width: 100%; height: 166px; border: 0; }
 .radio-credit { display: inline-block; margin-top: 12px; font-size: 10px; color: #7d8978; }
 footer { padding-bottom: 74px; }
 @media (prefers-reduced-motion: no-preference) {
@@ -510,3 +507,45 @@ footer { padding-bottom: 74px; }
   .spring-petals i:nth-child(even) { display: none; }
 }
 @media print { .spring-garden, .spring-petals, .spring-radio, .portrait-chicken, h2::before { display: none; } }
+
+.radio-actions { display: flex; gap: 5px; align-items: stretch; }
+.radio-settings { display: grid; place-items: center; width: 38px; border: 1px solid #dce7d6; border-radius: 13px; background: #fffffff2; color: #66815e; cursor: pointer; box-shadow: 0 6px 24px #64795510; }
+.radio-settings:hover { background: #f5faef; }
+.radio-action-icon { display: inline-block; min-width: 12px; font-size: 13px; }
+.radio-toggle[data-state=playing] { border-color: #b7d0aa; background: #f6fbedf5; }
+.radio-toggle[data-state=paused] .radio-note { color: #9aa595; }
+.radio-volume { display: flex; align-items: center; gap: 12px; margin: 4px 0 16px; color: #65775c; font-size: 12px; }
+.radio-volume input { min-width: 0; flex: 1; accent-color: #7c9c6e; }
+.radio-volume output { width: 28px; text-align: right; font-variant-numeric: tabular-nums; }
+
+/* Each chapter has its own little object from the valley. */
+#about { --section-color: #a9c695; --section-icon: url('assets/spring-junimo.svg'); }
+#news { --section-color: #a7bfd2; --section-icon: url('assets/valley-mailbox.svg'); }
+#experience { --section-color: #c8b795; --section-icon: url('assets/valley-pickaxe.svg'); }
+#projects { --section-color: #d8bb88; --section-icon: url('assets/valley-chest.svg'); }
+#education { --section-color: #b9a7cf; --section-icon: url('assets/valley-book.svg'); }
+#skills { --section-color: #a99dc9; --section-icon: url('assets/valley-crystal.svg'); }
+h2::before { width: 28px; height: 30px; flex-basis: 28px; background-image: var(--section-icon); }
+h2::after { background: linear-gradient(90deg, var(--section-color, #c9dbef), #eceff5); }
+.visitor-map figcaption > span { display: inline-flex; align-items: center; gap: 10px; }
+.visitor-map figcaption > span::before { content: ''; flex: 0 0 25px; width: 25px; height: 25px; background: url('assets/valley-compass.svg') center / contain no-repeat; image-rendering: pixelated; }
+.valley-frame { position: fixed; inset: calc(var(--topbar-height) + 9px) 7px 7px; z-index: 2; pointer-events: none; border: 1px solid #d5ddc86b; border-radius: 3px; }
+.valley-frame-side { position: absolute; top: 12px; bottom: 14px; width: 24px; background: url('assets/valley-vine.svg') top center / 24px 224px repeat-y; opacity: .7; image-rendering: pixelated; }
+.frame-left { left: -4px; }
+.frame-right { right: -4px; transform: scaleX(-1); }
+.valley-frame-fence { position: absolute; bottom: -7px; left: -7px; right: -7px; height: 14px; background: url('assets/valley-fence.svg') bottom left / 48px 14px repeat-x; opacity: .68; image-rendering: pixelated; }
+.valley-frame > img { position: absolute; image-rendering: pixelated; }
+.frame-star { right: -1px; top: -4px; }
+.frame-junimo { left: -4px; top: -5px; }
+.radio-panel { width: min(340px, calc(100vw - 32px)); padding: 18px; border: 1px solid #dee8d8; border-radius: 18px; background: #fffffff7; box-shadow: 0 12px 48px #58685422; backdrop-filter: blur(22px); }
+@media (max-width: 760px) {
+  .valley-frame { left: 2px; right: 2px; bottom: 3px; }
+  .valley-frame-side { width: 12px; background-size: 12px 112px; opacity: .55; }
+  .frame-left { left: -2px; }
+  .frame-right { right: -2px; }
+  .frame-star { width: 18px; height: 18px; right: -1px; }
+  .frame-junimo { width: 17px; height: 20px; left: -2px; }
+  .valley-frame-fence { height: 8px; background-size: 32px 10px; bottom: -3px; left: -2px; right: -2px; }
+  h2::before { width: 25px; height: 27px; flex-basis: 25px; }
+}
+@media print { .valley-frame, .visitor-map figcaption > span::before { display: none; } }
