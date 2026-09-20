@@ -312,3 +312,26 @@ document.querySelectorAll('[data-architecture]').forEach(demo => {
   demo.querySelector('.demo-controls').hidden = false;
   select(0);
 });
+
+// Load the artist's official player only when the visitor opens Spring radio.
+// Clearing its source stops playback, including when closed with Escape.
+const springRadio = document.querySelector('.spring-radio');
+if (springRadio) {
+  const toggle = springRadio.querySelector('.radio-toggle');
+  const panel = springRadio.querySelector('.radio-panel');
+  const player = springRadio.querySelector('.radio-embed iframe');
+  const source = player.getAttribute('src');
+  const close = springRadio.querySelector('.radio-close');
+  function setRadioOpen(open) {
+    toggle.setAttribute('aria-expanded', String(open));
+    panel.hidden = !open;
+    if (open && !player.getAttribute('src')) player.src = source;
+    if (!open) player.removeAttribute('src');
+  }
+  toggle.hidden = false;
+  toggle.addEventListener('click', () => setRadioOpen(panel.hidden));
+  close.addEventListener('click', () => { setRadioOpen(false); toggle.focus(); });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !panel.hidden) { setRadioOpen(false); toggle.focus(); }
+  });
+}

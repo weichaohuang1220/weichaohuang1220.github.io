@@ -110,3 +110,11 @@ The primary sources below document the proposed concepts; the public reference s
 - Specialist delegation (2025.06.13): https://www.anthropic.com/engineering/multi-agent-research-system — use independent workers only when task structure warrants them.
 
 The ChatMind diagram now integrates existing and proposed components in one compact map. Nodes have centered labels, with explanations shown only for the current animation step. The MiniMind nodes retain their half-size geometry. Both project overview cards and standalone run/setup sections remain removed.
+
+## Spring accents and music (2026-09-20)
+
+The white portfolio layout now includes original SVG pixel artwork inspired by Stardew Valley: a portrait chicken, a small spring garden with a Junimo, blossoms, heading sprouts and decorative edge petals. Decorations are hidden from assistive technology and print. Motion respects reduced-motion preferences.
+
+Spring radio loads ConcernedApe’s official Bandcamp player only after opening the control. The visitor starts or pauses audio with the embedded player. Closing the panel or pressing Escape clears the iframe source and stops playback. No audio files are copied into the repository, and no autoplay or playback preference is persisted. A direct artist-page link remains available if the embed is blocked.
+
+Track: Spring (It's A Big World Outside), official track ID 2400130546. Source: https://concernedape.bandcamp.com/track/spring-its-a-big-world-outside . The artist page identifies the track as publicly embeddable.

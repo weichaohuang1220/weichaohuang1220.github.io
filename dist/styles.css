@@ -454,3 +454,59 @@ body.page-hidden::before, body.page-hidden h1, body.page-hidden .portrait-wrap::
 }
 @keyframes architecture-flow { to { stroke-dashoffset: -28; } }
 @media (max-width: 760px) { .use-case { padding: 16px; } .use-case ol { grid-template-columns: 1fr; gap: 18px; } }
+
+/* Small spring pixel details sit alongside the original white/color treatment. */
+.portrait-chicken { position: absolute; z-index: 2; right: -19px; bottom: -13px; width: 48px; height: 48px; image-rendering: pixelated; pointer-events: none; filter: drop-shadow(0 3px 0 #ffffffd9); }
+h2::before { content: ''; width: 21px; height: 24px; flex: 0 0 21px; background: url('assets/spring-sprout.svg') center / contain no-repeat; image-rendering: pixelated; }
+h2 { gap: 12px; }
+.spring-garden { position: relative; height: 94px; margin: -30px 0 38px; border-radius: 0 0 16px 16px; background: url('assets/spring-meadow.svg') bottom left / 240px 36px repeat-x, linear-gradient(0deg, #f1f7eb80, transparent 75%); overflow: hidden; pointer-events: none; }
+.spring-garden img { position: absolute; bottom: 4px; image-rendering: pixelated; }
+.garden-tree.tree-left { left: 18px; }
+.garden-tree.tree-right { right: 28px; }
+.garden-junimo { left: 41%; transform-origin: bottom center; }
+.garden-chicken { position: absolute; left: 64%; bottom: 0; width: 42px; height: 46px; }
+.garden-chicken img { left: 0; }
+.spring-petals { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.spring-petals i { position: absolute; top: -20px; width: 7px; height: 5px; background: #e9bdd2; opacity: 0; box-shadow: 3px -2px 0 #f2d5e0; }
+.spring-petals i:nth-child(1) { left: 2%; --delay: 0s; --sway: 15px; }
+.spring-petals i:nth-child(2) { left: 6%; --delay: -9s; --sway: -20px; }
+.spring-petals i:nth-child(3) { left: 96%; --delay: -4s; --sway: 12px; }
+.spring-petals i:nth-child(4) { left: 99%; --delay: -15s; --sway: -15px; }
+.spring-petals i:nth-child(5) { left: 1%; --delay: -20s; --sway: 5px; }
+.spring-petals i:nth-child(6) { left: 94%; --delay: -24s; --sway: 20px; }
+.spring-radio { position: fixed; right: 22px; bottom: max(18px, env(safe-area-inset-bottom)); z-index: 20; display: flex; align-items: flex-end; flex-direction: column; gap: 10px; }
+.radio-toggle { display: flex; align-items: center; gap: 10px; min-height: 44px; border: 1px solid #dce7d6; border-radius: 15px; padding: 8px 14px; background: #fffffff2; box-shadow: 0 6px 24px #64795514; color: #557354; font: 500 13px/1.5 var(--sans); cursor: pointer; backdrop-filter: blur(18px); }
+.radio-toggle:hover { background: #f5faef; }
+.radio-note { font-size: 21px; color: #7fa577; line-height: 1; }
+.radio-plus { font-size: 19px; transition: transform .2s; }
+.radio-toggle[aria-expanded=true] .radio-plus { transform: rotate(45deg); }
+.radio-panel { width: min(340px, calc(100vw - 32px)); padding: 18px; border: 1px solid #dee8d8; border-radius: 18px; background: #fffffff7; box-shadow: 0 12px 48px #58685422; backdrop-filter: blur(22px); }
+.radio-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 15px; }
+.radio-heading span { display: block; color: #78916c; font-size: 9px; letter-spacing: .14em; margin-bottom: 5px; }
+.radio-heading strong { display: block; font-size: 14px; color: #4f634b; font-weight: 500; }
+.radio-close { flex: 0 0 32px; min-height: 32px; border: 0; border-radius: 8px; background: #f2f6ee; color: #64765d; cursor: pointer; font-size: 22px; line-height: 1; }
+.radio-embed { min-height: 42px; border-radius: 6px; background: #f8faf5; }
+.radio-embed iframe { display: block; width: 100%; height: 42px; border: 0; }
+.radio-credit { display: inline-block; margin-top: 12px; font-size: 10px; color: #7d8978; }
+footer { padding-bottom: 74px; }
+@media (prefers-reduced-motion: no-preference) {
+  .spring-petals i { animation: spring-petal-fall 28s linear infinite; animation-delay: var(--delay); }
+  .garden-junimo { animation: junimo-hop 7s steps(1, end) infinite; }
+  .garden-chicken { animation: chicken-stroll 18s linear infinite; }
+  .garden-chicken img { animation: chicken-step .6s steps(2, end) infinite; }
+}
+@keyframes spring-petal-fall { 0% { transform: translate(0, -20px) rotate(0); opacity: 0; } 8%, 80% { opacity: .55; } 100% { transform: translate(var(--sway), 104vh) rotate(250deg); opacity: 0; } }
+@keyframes junimo-hop { 0%, 62%, 78%, 100% { transform: translateY(0); } 65%, 75% { transform: translateY(-4px) rotate(-4deg); } 69% { transform: translateY(-10px) rotate(4deg); } }
+@keyframes chicken-stroll { 0%, 10% { transform: translateX(0) scaleX(1); } 43%, 49% { transform: translateX(60px) scaleX(1); } 50%, 58% { transform: translateX(60px) scaleX(-1); } 92%, 99% { transform: translateX(0) scaleX(-1); } 100% { transform: translateX(0) scaleX(1); } }
+@keyframes chicken-step { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@media (max-width: 760px) {
+  .spring-garden { height: 76px; margin-top: -18px; }
+  .garden-tree.tree-left { width: 60px; height: auto; left: 4px; }
+  .garden-tree.tree-right { width: 48px; height: auto; right: 4px; }
+  .garden-junimo { left: 36%; width: 30px; height: auto; }
+  .garden-chicken { left: 50%; }
+  .spring-radio { right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); }
+  .radio-toggle { font-size: 12px; padding: 7px 12px; }
+  .spring-petals i:nth-child(even) { display: none; }
+}
+@media print { .spring-garden, .spring-petals, .spring-radio, .portrait-chicken, h2::before { display: none; } }

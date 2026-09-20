@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <title>Pixel chicken</title>
+  <g shape-rendering="crispEdges">
+    <path d="M4 27h24v2H4zM7 25h3v2H7zM25 25h2v2h-2z" fill="#87bb72"/>
+    <path d="M12 24h2v4h3v1h-6v-2h1zM21 23h2v4h3v2h-6v-2h1z" fill="#bf6a2b"/>
+    <path d="M17 8V5h3V3h3v2h2v5h-8z" fill="#a94039"/>
+    <path d="M18 6h3V4h1v3h2v2h-6z" fill="#ed7061"/>
+    <path d="M17 8h8v2h2v8h-2v5h-3v3H10v-2H7v-4H5v-5H4v-4h3v2h3v2h4v-4h3z" fill="#78513d"/>
+    <path d="M18 9h6v2h2v6h-2v5h-3v2H11v-2H9v-3H7v-3H6v-2h2v1h3v2h4v-5h3z" fill="#fff0cf"/>
+    <path d="M18 10h5v2h-2v3h-3v5h-3v-2h1v-5h2zM8 16h3v2h3v2h-3v-1H9v-1H8z" fill="#fffdf2"/>
+    <path d="M11 18h2v3h6v-2h2v3h-2v1h-7v-2h-1z" fill="#dab87c"/>
+    <path d="M23 11h2v2h-2z" fill="#342e35"/>
+    <path d="M26 13h4v2h-2v1h-2z" fill="#d18730"/>
+    <path d="M26 13h3v1h-3z" fill="#ffcf5a"/>
+    <path d="M25 17h2v3h-2z" fill="#cf5949"/>
+  </g>
+</svg>
