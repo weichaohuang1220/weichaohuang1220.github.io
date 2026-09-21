@@ -335,6 +335,10 @@ if (springRadio) {
   let duration = 0;
   let retryOnGesture = wantsPlay;
   let pendingTimer;
+  let showPlayerOnBlock = false;
+  let nativePlayAllowed = false;
+  let scrollAttempts = 0;
+  let lastScrollAttempt = 0;
   function rememberPause(paused) {
     try { localStorage.setItem(preferenceKey, String(paused)); } catch (_) {}
   }
@@ -342,14 +346,24 @@ if (springRadio) {
     state = next;
     toggle.dataset.state = next;
     label.textContent = { loading: 'Spring · Loading', starting: 'Spring · Starting', playing: 'Spring music', paused: 'Spring · Paused', blocked: 'Spring · Tap to play', error: 'Spring · Unavailable' }[next];
-    const canPause = next === 'playing' || next === 'starting' || (next === 'loading' && wantsPlay);
+    const canPause = next === 'playing';
     icon.textContent = canPause ? 'Ⅱ' : '▷';
     toggle.setAttribute('aria-label', canPause ? 'Pause spring music' : 'Play spring music');
     toggle.setAttribute('aria-pressed', String(next === 'playing'));
   }
   function start(manual = false) {
-    if (failed) { setPanel(true); return; }
-    if (manual) { wantsPlay = true; retryOnGesture = true; rememberPause(false); }
+    if (manual) {
+      wantsPlay = true;
+      retryOnGesture = true;
+      showPlayerOnBlock = true;
+      rememberPause(false);
+      // A direct tap inside the provider player remains available on mobile.
+      if (window.matchMedia('(pointer: coarse)').matches || state === 'blocked' || failed) setPanel(true);
+    }
+    if (failed) {
+      if (manual) reloadPlayer();
+      return;
+    }
     if (!wantsPlay) return;
     if (!ready) { render('loading'); return; }
     clearTimeout(pendingTimer);
@@ -357,12 +371,17 @@ if (springRadio) {
     widget.play();
     render('starting');
     pendingTimer = setTimeout(() => {
-      if (wantsPlay && state === 'starting') render('blocked');
+      if (wantsPlay && state === 'starting') {
+        render('blocked');
+        if (showPlayerOnBlock) setPanel(true);
+      }
     }, 3500);
   }
   function pause() {
     wantsPlay = false;
     retryOnGesture = false;
+    showPlayerOnBlock = false;
+    nativePlayAllowed = false;
     clearTimeout(pendingTimer);
     rememberPause(true);
     if (ready) widget.pause();
@@ -370,6 +389,7 @@ if (springRadio) {
   }
   function setPanel(open) {
     panel.hidden = !open;
+    nativePlayAllowed = open;
     settings.setAttribute('aria-expanded', String(open));
   }
   function unavailable() {
@@ -378,6 +398,7 @@ if (springRadio) {
     clearTimeout(pendingTimer);
     if (ready) widget.pause();
     render('error');
+    if (showPlayerOnBlock) setPanel(true);
   }
   function initMusic() {
     if (!window.SC || !window.SC.Widget) { unavailable(); return; }
@@ -394,7 +415,9 @@ if (springRadio) {
       else { widget.pause(); render('paused'); }
     });
     widget.bind(events.PLAY, () => {
-      if (!wantsPlay) { widget.pause(); return; }
+      if (!wantsPlay && !nativePlayAllowed) { widget.pause(); return; }
+      wantsPlay = true;
+      rememberPause(false);
       clearTimeout(pendingTimer);
       retryOnGesture = false;
       widget.setVolume(volume);
@@ -418,7 +441,7 @@ if (springRadio) {
     widget.bind(events.ERROR, unavailable);
   }
   toggle.addEventListener('click', () => {
-    if (state === 'playing' || state === 'starting' || (state === 'loading' && wantsPlay)) pause();
+    if (state === 'playing') pause();
     else start(true);
   });
   settings.addEventListener('click', () => setPanel(panel.hidden));
@@ -435,16 +458,46 @@ if (springRadio) {
     if (state !== 'playing') start();
   }
   document.addEventListener('pointerup', tryGesture, { passive: true });
+  document.addEventListener('touchend', tryGesture, { passive: true });
+  // Scroll is best-effort: it does not grant audible autoplay permission in Safari.
+  // Limit retries so a long scroll never floods the player or postpones the fallback.
+  function tryScroll() {
+    if (!ready || failed || !wantsPlay || !retryOnGesture || state === 'playing') return;
+    const now = Date.now();
+    if (scrollAttempts >= 3 || now - lastScrollAttempt < 4000) return;
+    lastScrollAttempt = now;
+    scrollAttempts += 1;
+    start();
+  }
+  window.addEventListener('scroll', tryScroll, { passive: true });
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && !panel.hidden) { setPanel(false); settings.focus(); return; }
     tryGesture(event);
   });
   springRadio.querySelector('.radio-actions').hidden = false;
   render(wantsPlay ? 'loading' : 'paused');
-  const loadTimer = setTimeout(unavailable, 20000);
-  const sdk = document.createElement('script');
-  sdk.src = 'https://w.soundcloud.com/player/api.js';
-  sdk.onload = initMusic;
-  sdk.onerror = () => { clearTimeout(loadTimer); unavailable(); };
-  document.head.append(sdk);
+  let loadTimer;
+  function loadSdk() {
+    const sdk = document.createElement('script');
+    sdk.src = 'https://w.soundcloud.com/player/api.js';
+    sdk.onload = initMusic;
+    sdk.onerror = () => { clearTimeout(loadTimer); unavailable(); };
+    document.head.append(sdk);
+  }
+  function reloadPlayer() {
+    failed = false;
+    ready = false;
+    render('loading');
+    clearTimeout(loadTimer);
+    loadTimer = setTimeout(unavailable, 30000);
+    const player = document.getElementById('spring-player');
+    player.src = player.src;
+    // Existing bindings receive READY again when the iframe reloads.
+    if (!widget) {
+      if (window.SC && window.SC.Widget) initMusic();
+      else loadSdk();
+    }
+  }
+  loadTimer = setTimeout(unavailable, 30000);
+  loadSdk();
 }

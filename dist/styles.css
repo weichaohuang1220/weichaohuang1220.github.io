@@ -549,3 +549,5 @@ h2::after { background: linear-gradient(90deg, var(--section-color, #c9dbef), #e
   h2::before { width: 25px; height: 27px; flex-basis: 25px; }
 }
 @media print { .valley-frame, .visitor-map figcaption > span::before { display: none; } }
+
+.radio-help { margin: 0 0 12px; color: #65775c; font-size: 12px; line-height: 1.6; }
