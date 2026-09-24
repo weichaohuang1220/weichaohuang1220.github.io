@@ -643,3 +643,9 @@ footer { position: relative; padding-top: 30px; }
 
 .theme-credit { flex-basis: 100%; margin: 0; font-size: 11px; line-height: 1.7; }
 .theme-credit a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #b9c3ac; }
+
+/* File tools exist in the repository but are not enabled by default. */
+.disabled-node rect { fill: #f4f8fa; stroke: #8aaeb8; stroke-dasharray: 5 4; }
+.disabled-node.is-active rect { fill: #e6f4f6; stroke: #639eaf; }
+.disabled-route { stroke: #9ab9c3; stroke-dasharray: 5 4; }
+.disabled-route.is-active { stroke: #639eaf; }

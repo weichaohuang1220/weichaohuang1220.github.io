@@ -120,3 +120,7 @@ Spring music uses the supported SoundCloud Widget API for the ConcernedApe-accou
 Track source: https://soundcloud.com/concernedape/spring-the-valley-comes-alive (public and embeddable, duration about 4:23). API documentation: https://developers.soundcloud.com/docs/api/html5-widget . This replaces the former Bandcamp embed, which did not offer the parent-page playback and volume controls required for this design.
 
 Each major section uses a different original pixel motif: Junimo (About), mailbox (Recent News), pickaxe (Experience), chest (Projects), book (Education), crystal (Skills), and compass (visitor map). A fixed, non-interactive frame adds flowering vines, a small wooden fence, a star and a Junimo at the page edges. Mobile uses narrower edge decoration to keep reading space clear; print omits the frame.
+
+## File System animation (2026-09-24)
+
+Reviewed local ChatMind commit `2e14495`: `FileSystemTools.java` implements listing, reading, writing/creating, appending, deleting files and creating directories. Its Spring component annotation is commented out, so the diagram marks it as disabled with blue dashed routes. Four illustrative steps (Find, Read, Write, Review) use fictional booking rule and test files. Finding uses directory listings; no grep/search tool or test runner is claimed. Review reads changes back; executing tests would need a separate tool. No ChatMind backend code or tool enablement was changed.
