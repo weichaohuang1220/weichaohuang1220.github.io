@@ -172,7 +172,7 @@ document.querySelectorAll('.portrait-wrap, .entry, .school').forEach(surface => 
 });
 
 
-// Match the map frame to the numbered step card without changing semantic route colors.
+// One palette drives the selected button, caption, diagram nodes and moving routes.
 function matchStepTheme(demo, selected) {
   ['--step-accent', '--step-line', '--step-wash'].forEach(name => {
     demo.style.setProperty(name, selected.style.getPropertyValue(name));

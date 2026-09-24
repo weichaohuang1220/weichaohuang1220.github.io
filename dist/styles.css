@@ -401,15 +401,15 @@ body.page-hidden::before, body.page-hidden h1, body.page-hidden .portrait-wrap::
 .architecture-viewport { width: 100%; overflow-x: auto; border: 1px solid #e2e7f1; border-radius: 16px; background: linear-gradient(120deg, #f7faff, #fff 50%, #faf7ff); }
 .architecture-viewport:focus-visible { outline: 2px solid #8f9de1; outline-offset: 4px; }
 .architecture-svg { display: block; width: 100%; min-width: 860px; font-family: var(--sans); }
-.architecture-node rect { fill: #fff; stroke: #dce3ee; stroke-width: 1.5; transition: fill .4s, stroke .4s; }
-.architecture-node[data-node="agent"] rect { fill: #f5f1ff; stroke: #cec2ed; }
-.architecture-node.is-active rect { fill: #eef2ff; stroke: #899cda; stroke-width: 2.5; }
-.architecture-node.is-active[data-node="agent"] rect { fill: #ebe3ff; stroke: #ad90dc; }
+.architecture-node rect { fill: #fff; stroke: #dce3ee; stroke-width: 1.5; }
+.architecture-node[data-node="agent"] rect { fill: #fff; stroke: #dce3ee; }
+.architecture-node.is-active rect { fill: var(--step-wash); stroke: var(--step-accent); stroke-width: 2.5; }
+.architecture-node.is-active .architecture-title { fill: var(--step-accent); }
 .architecture-kicker { fill: #7c89a0; font-size: 10px; letter-spacing: 1px; font-weight: 600; }
 .architecture-title { fill: #3f4f6a; font-size: 17px; font-weight: 600; }
 .architecture-copy { fill: #687890; font-size: 12px; }
 .architecture-route { fill: none; stroke: #ccd6e5; stroke-width: 1.7; stroke-linejoin: round; }
-.architecture-route.is-active { stroke: #8398d8; stroke-width: 3; stroke-dasharray: 9 5; }
+.architecture-route.is-active { stroke: var(--step-accent); stroke-width: 3; stroke-dasharray: 9 5; }
 .architecture-legend { fill: #7c89a0; font-size: 12px; }
 .architecture-caption { margin-top: 16px; padding: 18px 20px; border: 1px solid #e0e6f0; border-radius: 12px; background: #fff; min-height: 122px; }
 .architecture-caption strong { color: #56658d; font-size: 15px; }
@@ -432,10 +432,10 @@ body.page-hidden::before, body.page-hidden h1, body.page-hidden .portrait-wrap::
 .flow-example { margin-top: 12px; padding-top: 12px; border-top: 1px solid #e8edf5; color: #536583; font-size: 14px; line-height: 1.8; }
 .flow-progress { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin: 0 0 16px; color: #79859b; font-size: 12px; }
 .flow-progress [data-flow-progress] { color: #5c6f9c; font-size: 14px; font-weight: 600; }
-.proposed-node rect { fill: #fffaf0; stroke: #c4a16b; stroke-dasharray: 6 4; }
-.proposed-node.is-active rect { fill: #fff0cd; stroke: #c3974e; }
-.proposed-route { stroke: #cfb790; stroke-dasharray: 5 5; }
-.proposed-route.is-active { stroke: #b38949; }
+.proposed-node rect { fill: #fafbfd; stroke: #bbc6d5; stroke-dasharray: 6 4; }
+.proposed-node.is-active rect { fill: var(--step-wash); stroke: var(--step-accent); }
+.proposed-route { stroke: #bbc6d5; stroke-dasharray: 5 5; }
+.proposed-route.is-active { stroke: var(--step-accent); stroke-dasharray: 5 5; }
 .architecture-demo[data-mode=loop] .proposed-node { opacity: .55; }
 .reference-notes { margin-top: 16px; }
 .reference-notes .detail-body { font-size: 14px; }
@@ -637,10 +637,10 @@ footer { position: relative; padding-top: 30px; }
 .theme-credit a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #b9c3ac; }
 
 /* File tools exist in the repository but are not enabled by default. */
-.disabled-node rect { fill: #f4f8fa; stroke: #8aaeb8; stroke-dasharray: 5 4; }
-.disabled-node.is-active rect { fill: #e6f4f6; stroke: #639eaf; }
-.disabled-route { stroke: #9ab9c3; stroke-dasharray: 5 4; }
-.disabled-route.is-active { stroke: #639eaf; }
+.disabled-node rect { fill: #f7f9fb; stroke: #bbc6d5; stroke-dasharray: 2 4; }
+.disabled-node.is-active rect { fill: var(--step-wash); stroke: var(--step-accent); }
+.disabled-route { stroke: #bbc6d5; stroke-dasharray: 2 4; }
+.disabled-route.is-active { stroke: var(--step-accent); stroke-dasharray: 2 4; }
 
 .implementation-details { margin-top: 20px; }
 .detail-heading { margin: 0 0 12px; color: var(--muted); font-size: .8125rem; font-weight: 600; line-height: 1.6; }
@@ -679,7 +679,7 @@ footer { position: relative; padding-top: 30px; }
 .flow-caption .numbered-scene { min-height: 210px; }
 .flow-caption .flow-badge { background: var(--step-wash); color: var(--step-accent); border: 1px solid var(--step-line); }
 .flow-example { border-color: var(--step-line); }
-/* The diagram keeps blue/amber semantics for disabled/proposed components. */
+/* State uses line patterns and labels; all active artwork uses the selected step palette. */
 .use-case .use-case-summary { margin: 0; max-width: 760px; font-size: 14px; color: #626e82; line-height: 1.7; }
 .use-case h4 { margin-bottom: 8px; }
 .followup-scene { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: center; gap: 30px; min-height: 320px; }
@@ -689,7 +689,7 @@ footer { position: relative; padding-top: 30px; }
 .case-detail dl { display: grid; gap: 18px; margin: 0; }
 .case-detail dt { margin-bottom: 4px; color: var(--step-accent); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
 .case-detail dd { margin: 0; font-size: 14px; line-height: 1.75; color: #5c687a; }
-.followup-phone { width: 184px; padding: 11px; border: 2px solid #b7c2d0; border-radius: 25px; background: #fff; box-shadow: 0 12px 30px #53688512; }
+.followup-phone { width: 184px; padding: 11px; border: 2px solid var(--step-line); border-radius: 25px; background: #fff; box-shadow: 0 12px 30px #53688512; }
 .phone-island { width: 45px; height: 5px; margin: 0 auto 11px; border-radius: 10px; background: #667084; }
 .phone-home { width: 48px; height: 3px; margin: 13px auto 0; background: #b5bfcd; border-radius: 8px; }
 .mock-label { display: block; color: #708097; font-size: 10px; text-align: center; margin-bottom: 8px; }
@@ -700,7 +700,7 @@ footer { position: relative; padding-top: 30px; }
 .capture-prompt span { grid-area: 1 / 1; }
 .prompt-smile { opacity: 0; }
 .record-strip { display: flex; justify-content: center; align-items: center; gap: 6px; font-size: 9px; color: #7f6570; }
-.live-dot { display: inline-block; width: 6px; height: 6px; flex: 0 0 auto; border-radius: 50%; background: #c6777e; }
+.live-dot { display: inline-block; width: 6px; height: 6px; flex: 0 0 auto; border-radius: 50%; background: var(--step-accent); }
 .clip-timeline, .upload-meter { height: 4px; margin-top: 10px; overflow: hidden; border-radius: 5px; background: #e4eaf0; }
 .clip-timeline i, .upload-meter i { display: block; height: 100%; background: var(--step-accent); transform-origin: left; }
 .upload-visual { width: min(100%, 380px); display: grid; grid-template-columns: 1fr 48px 1fr; align-items: center; gap: 4px; }
@@ -769,3 +769,10 @@ footer { position: relative; padding-top: 30px; }
  .profile-links > a { padding-inline: 5px; }
  .profile-links .copy-email { width: 28px; }
 }
+
+/* Theme the schematic UI while retaining natural face and hair colors. */
+.followup-face > rect { fill: var(--step-wash); }
+.mock-label, .record-strip, .frame-strip, .report-row { color: var(--step-accent); }
+.report-row { border-bottom-color: var(--step-line); }
+.phone-island, .phone-home { background: var(--step-accent); }
+.clip-timeline, .upload-meter { background: var(--step-line); }
