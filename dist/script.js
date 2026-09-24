@@ -172,6 +172,13 @@ document.querySelectorAll('.portrait-wrap, .entry, .school').forEach(surface => 
 });
 
 
+// Match the map frame to the numbered step card without changing semantic route colors.
+function matchStepTheme(demo, selected) {
+  ['--step-accent', '--step-line', '--step-wash'].forEach(name => {
+    demo.style.setProperty(name, selected.style.getPropertyValue(name));
+  });
+}
+
 // Inline demos: independent scenes, manual selection, and pausable playback.
 document.querySelectorAll('.project-demo:not([data-architecture])').forEach(demo => {
   const panels = [...demo.querySelectorAll('.demo-panel')];
@@ -188,15 +195,16 @@ document.querySelectorAll('.project-demo:not([data-architecture])').forEach(demo
     play.textContent = playing ? 'Pause' : 'Play';
     play.setAttribute('aria-label', playing ? 'Pause animation' : 'Play animation');
     play.disabled = reducedMotion.matches;
-    if (running) timer = setTimeout(() => select((index + 1) % panels.length), 8500);
+    if (running) timer = setTimeout(() => select((index + 1) % panels.length), 9500);
   }
   function select(next) {
     index = next;
+    matchStepTheme(demo, buttons[index]);
     panels.forEach((panel, i) => { panel.hidden = i !== index; });
     buttons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
     sync();
   }
-  buttons.forEach((button, i) => button.addEventListener('click', () => select(i)));
+  buttons.forEach((button, i) => button.addEventListener('click', () => { playing = false; select(i); }));
   play.addEventListener('click', () => { playing = !playing; sync(); });
   document.addEventListener('visibilitychange', sync);
   reducedMotion.addEventListener('change', () => { if (reducedMotion.matches) playing = false; sync(); });
@@ -238,6 +246,7 @@ document.querySelectorAll('[data-architecture]').forEach(demo => {
     index = next;
     const step = config[mode][index];
     const selected = `${mode}:${index}`;
+    matchStepTheme(demo, buttons.find(button => button.dataset.flowStep === selected));
     demo.dataset.mode = mode;
     demo.querySelectorAll('[data-node]').forEach(node => node.classList.toggle('is-active', step.nodes.includes(node.dataset.node)));
     demo.querySelectorAll('[data-route]').forEach(route => route.classList.toggle('is-active', step.routes.includes(route.dataset.route)));
@@ -306,6 +315,7 @@ if (springRadio) {
     state = next;
     toggle.dataset.state = next;
     label.textContent = { loading: 'Spring · Loading', starting: 'Spring · Starting', playing: 'Spring music', paused: 'Spring · Paused', blocked: 'Spring · Tap to play', error: 'Spring · Unavailable' }[next];
+    toggle.title = label.textContent;
     const canPause = next === 'playing';
     icon.textContent = canPause ? 'Ⅱ' : '▷';
     toggle.setAttribute('aria-label', canPause ? 'Pause spring music' : 'Play spring music');
