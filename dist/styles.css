@@ -18,7 +18,7 @@ body::after { content: ''; position: fixed; top: 0; left: 0; width: 100%; height
 ::selection { background: #e4eafb; color: var(--ink); }
 a { color: var(--accent); text-decoration: none; text-underline-offset: 4px; transition: color .2s; }
 a:hover { text-decoration: underline; }
-a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 6px; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 6px; }
 button { font: inherit; }
 p { margin: 0 0 14px; }
 h1, h2, h3 { margin: 0; color: var(--ink); font-weight: 600; }
@@ -78,12 +78,6 @@ h3 { font-size: 1.0625rem; line-height: 1.5; letter-spacing: -.02em; }
 .entry > p { font-size: .9375rem; }
 .entry .role { color: var(--muted); font-size: .8125rem; line-height: 1.65; margin-bottom: 14px; }
 .entry .tech { margin: 16px 0 0; color: #65779b; font-size: .75rem; }
-details { margin-top: 16px; }
-summary { display: flex; align-items: center; justify-content: space-between; gap: 18px; width: fit-content; min-height: 38px; padding: 5px 12px; border-radius: 10px; background: #edf2fa; list-style: none; font-size: .75rem; color: var(--accent); cursor: pointer; user-select: none; transition: background .2s; }
-summary::-webkit-details-marker { display: none; }
-summary:hover { background: #e4ecfa; }
-summary span { font-size: 1.0625rem; transition: transform .4s var(--ease-out); }
-details[open] summary span { transform: rotate(45deg); }
 .detail-body { padding-top: 16px; font-size: .875rem; }
 .detail-body ul { margin: 0; padding-left: 18px; }
 .detail-body li { margin-bottom: 8px; }
@@ -218,7 +212,6 @@ body.page-hidden::before, body.page-hidden h1, body.page-hidden .portrait-wrap::
 
 /* Inline, step-by-step project illustrations. */
 .project-demo { margin-top: 18px; padding-top: 14px; border-top: 1px solid #e7ebf3; }
-.project-demo > summary { min-height: 40px; padding-inline: 13px; }
 .demo-body { container-type: inline-size; margin-top: 16px; padding: 22px; background: linear-gradient(135deg, #f8fbff, #fcf8fe); border: 1px solid #e1e7f2; border-radius: 15px; }
 .demo-controls { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
 .demo-steps { display: flex; flex: 1; flex-wrap: wrap; gap: 5px; }
@@ -319,34 +312,33 @@ body.page-hidden::before, body.page-hidden h1, body.page-hidden .portrait-wrap::
 .streamed-output span { height: calc(5 * var(--demo-unit)); width: calc(90% - var(--i)*8%); border-radius: calc(3 * var(--demo-unit)); background: linear-gradient(90deg, #bfd2eb, #ded4ed); transform-origin: left; }
 .stream-cursor { height: calc(10 * var(--demo-unit)); width: calc(2 * var(--demo-unit)); margin: calc(10 * var(--demo-unit)) 0 0 calc(13 * var(--demo-unit)); background: #afa2cc; }
 @media (prefers-reduced-motion: no-preference) {
- .project-demo[open] .scan-beam { animation: demo-scan 2s ease-in-out infinite alternate; }
- .project-demo[open] .record-dot { animation: demo-blink 1.5s infinite; }
- .project-demo[open] .packets i { animation: demo-packet 1.8s calc(var(--i)*.5s) ease-in-out infinite; }
- .project-demo[open] .compute-ring { animation: demo-spin 5s linear infinite; }
- .project-demo[open] .analysis-face .face-landmarks, .project-demo[open] .compute-dots i { animation: demo-blink 1.2s infinite alternate; }
- .project-demo[open] .score-rows i { animation: demo-reveal 3s calc(var(--i)*.15s) ease-in-out infinite; }
- .project-demo[open] .annotated-face .face-landmarks { animation: demo-landmarks 3s infinite; }
- .project-demo[open] .token-corpus span { animation: demo-token 2.4s calc(var(--i)*.3s) infinite; }
- .project-demo[open] .chip-grid { animation: demo-chip 2.4s infinite; }
- .project-demo[open] .dialog-bubble { animation: demo-dialog 4s infinite; }
- .project-demo[open] .assistant-bubble { animation-delay: .55s; }
- .project-demo[open] .next-turn { animation-delay: 1.1s; }
- .project-demo[open] .adapter-stack > div { animation: demo-adapter 2s ease-in-out infinite alternate; }
- .project-demo[open] .adapter-stack > div:last-child { animation-delay: 1s; }
- .project-demo[open] .preferred { animation: demo-preference 3s infinite; }
- .project-demo[open] .alternative { animation: demo-alternative 3s infinite; }
- .project-demo[open] .candidate-group > div { animation: demo-group 3s calc(var(--i)*.3s) infinite; }
- .project-demo[open] .feedback-loop { animation: demo-spin 4s linear infinite; }
- .project-demo[open] .plan-nodes span { animation: demo-plan 3s infinite; }
- .project-demo[open] .plan-nodes span:nth-child(2) { animation-delay: .5s; }
- .project-demo[open] .plan-nodes span:nth-child(3) { animation-delay: 1s; }
- .project-demo[open] .tool-dispatch { animation: demo-dispatch 2s infinite; }
- .project-demo[open] .tool-nodes span { animation: demo-tool 2.4s calc(var(--i)*.6s) infinite; }
- .project-demo[open] .vector-match { animation: demo-search 3s calc(var(--i)*.08s) infinite; }
- .project-demo[open] .model-options span { animation: demo-model 6s calc(var(--i)*2s) infinite; }
- .project-demo[open] .streamed-output span { animation: demo-stream 3.5s calc(var(--i)*.3s) infinite; }
- .project-demo[open] .stream-cursor { animation: demo-blink .8s infinite; }
- .project-demo[open] .demo-body { animation: profile-in .3s var(--ease-out); }
+ .project-demo.demo-running .scan-beam { animation: demo-scan 2s ease-in-out infinite alternate; }
+ .project-demo.demo-running .record-dot { animation: demo-blink 1.5s infinite; }
+ .project-demo.demo-running .packets i { animation: demo-packet 1.8s calc(var(--i)*.5s) ease-in-out infinite; }
+ .project-demo.demo-running .compute-ring { animation: demo-spin 5s linear infinite; }
+ .project-demo.demo-running .analysis-face .face-landmarks, .project-demo.demo-running .compute-dots i { animation: demo-blink 1.2s infinite alternate; }
+ .project-demo.demo-running .score-rows i { animation: demo-reveal 3s calc(var(--i)*.15s) ease-in-out infinite; }
+ .project-demo.demo-running .annotated-face .face-landmarks { animation: demo-landmarks 3s infinite; }
+ .project-demo.demo-running .token-corpus span { animation: demo-token 2.4s calc(var(--i)*.3s) infinite; }
+ .project-demo.demo-running .chip-grid { animation: demo-chip 2.4s infinite; }
+ .project-demo.demo-running .dialog-bubble { animation: demo-dialog 4s infinite; }
+ .project-demo.demo-running .assistant-bubble { animation-delay: .55s; }
+ .project-demo.demo-running .next-turn { animation-delay: 1.1s; }
+ .project-demo.demo-running .adapter-stack > div { animation: demo-adapter 2s ease-in-out infinite alternate; }
+ .project-demo.demo-running .adapter-stack > div:last-child { animation-delay: 1s; }
+ .project-demo.demo-running .preferred { animation: demo-preference 3s infinite; }
+ .project-demo.demo-running .alternative { animation: demo-alternative 3s infinite; }
+ .project-demo.demo-running .candidate-group > div { animation: demo-group 3s calc(var(--i)*.3s) infinite; }
+ .project-demo.demo-running .feedback-loop { animation: demo-spin 4s linear infinite; }
+ .project-demo.demo-running .plan-nodes span { animation: demo-plan 3s infinite; }
+ .project-demo.demo-running .plan-nodes span:nth-child(2) { animation-delay: .5s; }
+ .project-demo.demo-running .plan-nodes span:nth-child(3) { animation-delay: 1s; }
+ .project-demo.demo-running .tool-dispatch { animation: demo-dispatch 2s infinite; }
+ .project-demo.demo-running .tool-nodes span { animation: demo-tool 2.4s calc(var(--i)*.6s) infinite; }
+ .project-demo.demo-running .vector-match { animation: demo-search 3s calc(var(--i)*.08s) infinite; }
+ .project-demo.demo-running .model-options span { animation: demo-model 6s calc(var(--i)*2s) infinite; }
+ .project-demo.demo-running .streamed-output span { animation: demo-stream 3.5s calc(var(--i)*.3s) infinite; }
+ .project-demo.demo-running .stream-cursor { animation: demo-blink .8s infinite; }
 }
 @keyframes demo-scan { to { top: 83%; } }
 @keyframes demo-blink { 50% { opacity: .35; } }
@@ -649,3 +641,6 @@ footer { position: relative; padding-top: 30px; }
 .disabled-node.is-active rect { fill: #e6f4f6; stroke: #639eaf; }
 .disabled-route { stroke: #9ab9c3; stroke-dasharray: 5 4; }
 .disabled-route.is-active { stroke: #639eaf; }
+
+.implementation-details { margin-top: 20px; }
+.detail-heading { margin: 0 0 12px; color: var(--muted); font-size: .8125rem; font-weight: 600; line-height: 1.6; }

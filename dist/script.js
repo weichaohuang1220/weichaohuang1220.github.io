@@ -133,36 +133,6 @@ window.addEventListener('resize', updateNavigation, { passive: true });
 if ('ResizeObserver' in window) new ResizeObserver(updateNavigation).observe(document.querySelector('.topbar'));
 updateNavigation();
 
-// Keep native details behavior as a fallback; animate both directions when supported.
-document.querySelectorAll('details:not(.project-demo)').forEach(details => {
-  const summary = details.querySelector('summary');
-  let animation;
-  let expanded = details.open;
-  function settle() {
-    if (animation) animation.cancel();
-    animation = null;
-    details.open = expanded;
-    details.style.overflow = '';
-    updateNavigation();
-  }
-  summary.addEventListener('click', event => {
-    if (reducedMotion.matches || typeof details.animate !== 'function') return;
-    event.preventDefault();
-    const startHeight = details.getBoundingClientRect().height;
-    if (animation) animation.cancel();
-    else expanded = details.open;
-    expanded = !expanded;
-    details.open = true;
-    const endHeight = expanded ? details.scrollHeight : summary.getBoundingClientRect().height;
-    details.style.overflow = 'hidden';
-    animation = details.animate(
-      { height: [`${startHeight}px`, `${endHeight}px`] },
-      { duration: 360, easing: 'cubic-bezier(.22,1,.36,1)' }
-    );
-    animation.onfinish = settle;
-  });
-  reducedMotion.addEventListener('change', () => { if (animation) settle(); });
-});
 document.addEventListener('visibilitychange', () => {
   document.body.classList.toggle('page-hidden', document.hidden);
 });
@@ -208,12 +178,12 @@ document.querySelectorAll('.project-demo:not([data-architecture])').forEach(demo
   const buttons = [...demo.querySelectorAll('[data-demo-step]')];
   const play = demo.querySelector('.demo-play');
   let index = 0;
-  let playing = false;
-  let inView = true;
+  let playing = !reducedMotion.matches;
+  let inView = !('IntersectionObserver' in window);
   let timer;
   function sync() {
     clearTimeout(timer);
-    const running = demo.open && playing && inView && !document.hidden && !reducedMotion.matches;
+    const running = playing && inView && !document.hidden && !reducedMotion.matches;
     demo.classList.toggle('demo-running', running);
     play.textContent = playing ? 'Pause' : 'Play';
     play.setAttribute('aria-label', playing ? 'Pause animation' : 'Play animation');
@@ -228,11 +198,6 @@ document.querySelectorAll('.project-demo:not([data-architecture])').forEach(demo
   }
   buttons.forEach((button, i) => button.addEventListener('click', () => select(i)));
   play.addEventListener('click', () => { playing = !playing; sync(); });
-  demo.addEventListener('toggle', () => {
-    playing = demo.open && !reducedMotion.matches;
-    if (demo.open) select(0);
-    else sync();
-  });
   document.addEventListener('visibilitychange', sync);
   reducedMotion.addEventListener('change', () => { if (reducedMotion.matches) playing = false; sync(); });
   if ('IntersectionObserver' in window) {
@@ -254,12 +219,12 @@ document.querySelectorAll('[data-architecture]').forEach(demo => {
   const progress = demo.querySelector('[data-flow-progress]');
   let mode = modeNames[0];
   let index = 0;
-  let playing = false;
-  let inView = true;
+  let playing = !reducedMotion.matches;
+  let inView = !('IntersectionObserver' in window);
   let timer;
   function sync() {
     clearTimeout(timer);
-    const running = demo.open && playing && inView && !document.hidden && !reducedMotion.matches;
+    const running = playing && inView && !document.hidden && !reducedMotion.matches;
     demo.classList.toggle('demo-running', running);
     play.textContent = playing ? 'Pause' : (index === config[mode].length - 1 ? 'Replay' : 'Play');
     play.setAttribute('aria-label', playing ? 'Pause walkthrough' : 'Play walkthrough');
@@ -298,11 +263,6 @@ document.querySelectorAll('[data-architecture]').forEach(demo => {
     if (!playing && index === config[mode].length - 1) index = 0;
     playing = !playing;
     select(index);
-  });
-  demo.addEventListener('toggle', () => {
-    playing = demo.open && !reducedMotion.matches;
-    if (demo.open) select(0);
-    else sync();
   });
   document.addEventListener('visibilitychange', sync);
   reducedMotion.addEventListener('change', () => { if (reducedMotion.matches) playing = false; sync(); });
