@@ -776,3 +776,16 @@ footer { position: relative; padding-top: 30px; }
 .report-row { border-bottom-color: var(--step-line); }
 .phone-island, .phone-home { background: var(--step-accent); }
 .clip-timeline, .upload-meter { background: var(--step-line); }
+
+
+/* Boxed numbers in the illustration itself, not only in the step controls. */
+.diagram-number { display: none; pointer-events: none; }
+.architecture-node.is-active .node-number, .route-number.is-active { display: inline; }
+.diagram-number rect { fill: var(--step-wash); stroke: var(--step-accent); stroke-width: 1.5; stroke-dasharray: none; }
+.architecture-node.is-active .diagram-number rect { fill: var(--step-accent); stroke: var(--step-accent); stroke-width: 1.5; stroke-dasharray: none; }
+.diagram-number text { fill: var(--step-accent); font: 600 12px/1 var(--sans); font-variant-numeric: tabular-nums; }
+.architecture-node .diagram-number text { fill: #fff; }
+.followup-visual { position: relative; padding: 28px 12px 14px; border: 1px solid var(--step-line); border-radius: 14px; background: #ffffff90; }
+.scene-number-tag, .transfer-step-tag { display: inline-grid; place-items: center; height: 23px; padding: 0 7px; border: 1px solid var(--step-accent); border-radius: 6px; background: var(--step-wash); color: var(--step-accent); font: 600 11px/1 var(--sans); font-variant-numeric: tabular-nums; }
+.scene-number-tag { position: absolute; left: 12px; top: -12px; }
+.transfer-step-tag { position: absolute; z-index: 1; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 44px; padding: 0; }

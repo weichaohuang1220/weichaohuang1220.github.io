@@ -215,9 +215,47 @@ document.querySelectorAll('.project-demo:not([data-architecture])').forEach(demo
   select(0);
 });
 
+// Numbered badges sit on active nodes and arrows, using the same step palette.
+function createDiagramBadges(demo) {
+  const svg = demo.querySelector('.architecture-svg');
+  const ns = 'http://www.w3.org/2000/svg';
+  const create = (tag, attrs) => {
+    const element = document.createElementNS(ns, tag);
+    Object.entries(attrs).forEach(([key, value]) => element.setAttribute(key, value));
+    return element;
+  };
+  const makeBadge = (className, x, y, width) => {
+    const group = create('g', { class: className, transform: `translate(${x} ${y})`, 'aria-hidden': 'true' });
+    group.append(create('rect', { x: -width / 2, y: -11, width, height: 22, rx: 6 }));
+    group.append(create('text', { x: 0, y: 1, 'text-anchor': 'middle', 'dominant-baseline': 'central' }));
+    return group;
+  };
+  demo.querySelectorAll('[data-node]').forEach(node => {
+    node.append(makeBadge('diagram-number node-number', 18, 0, 28));
+  });
+  const layer = create('g', { class: 'route-number-layer', 'aria-hidden': 'true' });
+  demo.querySelectorAll('[data-route]').forEach(route => {
+    const badge = makeBadge('diagram-number route-number', route.dataset.labelX, route.dataset.labelY, 48);
+    badge.dataset.labelRoute = route.dataset.route;
+    badge.dataset.direction = route.dataset.labelDirection;
+    layer.append(badge);
+  });
+  svg.append(layer);
+  return number => {
+    const label = String(number).padStart(2, '0');
+    demo.querySelectorAll('.node-number text').forEach(text => { text.textContent = label; });
+    layer.querySelectorAll('[data-label-route]').forEach(badge => {
+      const route = demo.querySelector(`[data-route="${badge.dataset.labelRoute}"]`);
+      badge.classList.toggle('is-active', route.classList.contains('is-active'));
+      badge.querySelector('text').textContent = `${label} ${badge.dataset.direction}`;
+    });
+  };
+}
+
 // Data-driven walkthroughs keep the full map visible across steps and modes.
 document.querySelectorAll('[data-architecture]').forEach(demo => {
   const config = JSON.parse(demo.querySelector('[data-flow-config]').textContent);
+  const numberDiagram = createDiagramBadges(demo);
   const modeNames = Object.keys(config);
   const modeButtons = [...demo.querySelectorAll('[data-flow-mode]')];
   const buttons = [...demo.querySelectorAll('[data-flow-step]')];
@@ -250,6 +288,7 @@ document.querySelectorAll('[data-architecture]').forEach(demo => {
     demo.dataset.mode = mode;
     demo.querySelectorAll('[data-node]').forEach(node => node.classList.toggle('is-active', step.nodes.includes(node.dataset.node)));
     demo.querySelectorAll('[data-route]').forEach(route => route.classList.toggle('is-active', step.routes.includes(route.dataset.route)));
+    numberDiagram(index + 1);
     captions.forEach(caption => { caption.hidden = caption.dataset.caption !== selected; });
     buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.flowStep === selected)));
     modeButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.flowMode === mode)));

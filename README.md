@@ -134,3 +134,7 @@ DynaFace illustrates a fictional at-home follow-up: a 12-second smile clip, uplo
 All 26 steps (DynaFace 4, MiniMind 8, ChatMind 14) have numbered controls and matching individually colored explanation frames. Architecture frames, highlighted nodes, labels, routes and arrowheads follow the selected step palette. Disabled file access is dotted; proposed modules are dashed and identified by text. Maps, implementation details, and animation areas remain inline.
 
 All step palettes are unique within each project. Diagram node fill, borders, labels, active connections and context-stroke arrowheads now inherit the same active palette as the step controls and captions. DynaFace schematic UI accents also use that palette; natural skin and hair colors stay constant. Static gray components indicate inactive nodes. Disabled/proposed status uses line patterns and explicit labels instead of fixed blue/amber colors.
+
+## Numbered artwork (2026-09-27)
+
+Active diagram modules carry a compact boxed step number; active arrows carry the same number plus a direction arrow inside a matching colored box. Badges update with manual selection, playback, and replay, and remain hidden on inactive connections. Positions are specified per route to keep labels out of module text. DynaFace illustration frames also contain a boxed step number, and its upload arrow has a corresponding numbered box.
