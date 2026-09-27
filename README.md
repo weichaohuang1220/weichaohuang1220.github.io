@@ -50,7 +50,7 @@ Make future changes in `/Users/pioneerrr/weichaohuang1220.github.io`, check the 
 
 ## Content source
 
-The website uses the owner-provided `WH-resume.pdf` as its factual source. The resume is not published or offered for download. The homepage displays only the Gmail contact; its phone number and school email are omitted.
+The website uses the owner-provided `WH_Resume.pdf` (reviewed 2026-09-27) as its factual source; ` Cover Letter.pdf` corroborates the practical AI engineering focus. The resume is not published or offered for download. The homepage displays only the Gmail contact; its phone number and school email are omitted.
 
 The current projects are MiniMind (2026.03–2026.06) and ChatMind (2025.12–2026.02). DynaFace includes account security and patient data-visibility controls. Parallel Programming remains coursework in the PDF and is not presented as a research direction on the homepage.
 
@@ -138,3 +138,9 @@ All step palettes are unique within each project. Diagram node fill, borders, la
 ## Numbered artwork (2026-09-27)
 
 Active diagram modules carry a compact boxed step number; active arrows carry the same number plus a direction arrow inside a matching colored box. Badges update with manual selection, playback, and replay, and remain hidden on inactive connections. Positions are specified per route to keep labels out of module text. DynaFace illustration frames also contain a boxed step number, and its upload arrow has a corresponding numbered box.
+
+## Resume alignment (2026-09-27)
+
+Checked About, experience and project introductions, implementation details, education, dates, skills and metadata against the latest owner-provided WH_Resume.pdf, with the cover letter as supporting context. MiniMind is a 64M-parameter model; About reflects the stated interest in practical AI engineering, AI agents, AI infrastructure and LLM inference. DynaFace describes patient-video scoring and the full five-area facial-function report workflow. ChatMind names Spring AI, tools, pgvector search, model switching and SSE.
+
+The existing privacy choices remain: no phone number, school email, resume download or UMN attendance dates. Neither supplied PDF is added to the public repository. Fictional animation examples and proposed/disabled extensions retain their explicit labels; they are explanations, not additional resume achievements.
