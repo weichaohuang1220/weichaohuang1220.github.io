@@ -56,9 +56,9 @@ The current projects are MiniMind (2026.03–2026.06) and ChatMind (2025.12–20
 
 Each project has an always-visible animation. DynaFace has four scenes. MiniMind shows a persistent training map with eight narrated steps, using an illustrative dinner-planning conversation with ingredient, dietary, timing and equipment constraints. The map covers curation, tokenization, broad-text pretraining, SFT, optional LoRA, alternative DPO/GRPO branches, held-out evaluation, and export. Its nodes are half their previous width and height, with unchanged font sizes and rerouted connections. The authored replies, preference pairs and rubric illustrate training concepts; they are not dataset records, checkpoint outputs or measured training results. The earlier arithmetic and RMSNorm examples are no longer displayed.
 
-ChatMind uses a single ten-step animation: Think, Act, Observe, Retry, Answer, Check, Context, Recover, Delegate, Replay. Task execution flows directly into proposed harness iteration on one shared architecture. The 12 modules each display one short label; MiniMind nodes also use only one short label. Separate mode controls, the Return stage and the public engineering-reference section are removed. Evaluation and verification share one module; context selection reuses Tools and Memory. Streaming is represented by the shared API/interface path.
+ChatMind uses one six-step animation: Understand, Retrieve, Check, Refine, Answer, Improve. Seven short-labeled modules show a model–agent–tool loop with a harness boundary around Agent and Memory. Knowledge and a disabled File System form tool branches. Runtime API, SSE and storage details are folded into the diagram; model switching and SSE remain in the project introduction. The separate mode controls, Return stage and public engineering-reference section remain removed.
 
-The initial task illustrates a refined search for a room-booking policy. Excerpts are not complete tool responses; the tiny fixture may retrieve all sections in the first call. This is a scripted explanation, not a backend replay. Harness steps remain explicitly proposed: answer checks, context selection, checkpointed recovery, optional workers, and regression replay. Dashed paths and the Recovery/Workers modules mark proposed additions; their highlight color follows the current step. Existing retrieval evaluation does not imply implemented answer verification, and chat persistence does not imply execution checkpoints.
+A fictional room-booking search illustrates incomplete evidence, feedback and a refined search. Excerpts are not complete tool responses; the tiny fixture may retrieve all sections in the first call. This is a scripted explanation, not a backend replay. Only the final Improve step is a proposed offline evaluation/revision cycle. Its dashed path represents saving failures, revising retrieval instructions and rerunning checks. Existing retrieval evaluation does not imply implemented answer verification. Checkpoint recovery and specialist workers are no longer shown.
 
 The data-driven walkthrough controller supports manual steps, pause, replay after completion, offscreen/hidden-tab pausing, and reduced-motion preferences. A complete pass stops at the final step. Without JavaScript, maps and every explanation remain readable.
 
@@ -100,7 +100,7 @@ DynaFace keeps its introductory use case. MiniMind and ChatMind omit the separat
 
 ## Research basis for harness illustrations (reviewed 2026.09)
 
-The primary sources below document the proposed concepts; the public reference section was removed at the owner’s request. These are selected engineering patterns, not an assertion that one agent is state of the art on every benchmark. No backend project changes or model training were performed in this update.
+The primary sources below informed proposed concepts in earlier iterations; the public reference section was removed at the owner’s request. These are selected engineering patterns, not an assertion that one agent is state of the art on every benchmark. No backend project changes or model training were performed in this update.
 
 - Harness design (2026.03.24): https://www.anthropic.com/engineering/harness-design-long-running-apps — independent evaluation and iterative harness changes.
 - Agent evaluation (2026.01.09): https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents — trajectories, outcome checks and regression suites.
@@ -123,7 +123,7 @@ Each major section uses a different original pixel motif: Junimo (About), mailbo
 
 ## File System animation (2026-09-24)
 
-Reviewed local ChatMind commit `2e14495`: `FileSystemTools.java` implements listing, reading, writing/creating, appending, deleting files and creating directories. Its Spring component annotation is commented out, so the diagram marks it as disabled with dotted routes and a text label. Four illustrative steps (Find, Read, Write, Review) use fictional booking rule and test files. Finding uses directory listings; no grep/search tool or test runner is claimed. Review reads changes back; executing tests would need a separate tool. No ChatMind backend code or tool enablement was changed.
+Reviewed local ChatMind commit `2e14495`: `FileSystemTools.java` implements listing, reading, writing/creating, appending, deleting files and creating directories. Its Spring component annotation is commented out, so the diagram marks it as disabled with dotted routes and a text label. The earlier Find / Read / Write / Review sequence used fictional booking rule and test files; it is now folded into a single disabled File System branch. Finding uses directory listings; no grep/search tool or test runner is claimed. Review reads changes back; executing tests would need a separate tool. No ChatMind backend code or tool enablement was changed.
 
 ## Numbered project scenes and profile music (2026-09-24)
 
@@ -131,7 +131,7 @@ The music play/pause and volume controls sit immediately after GitHub and Linked
 
 DynaFace illustrates a fictional at-home follow-up: a 12-second smile clip, upload and queued job DF-014, frame analysis, then clinician review of the annotated video and five-area report. Screens, filenames and timing are illustrative, not captured product UI or patient data. No clinical values or diagnoses are shown. Recording prompts, moving upload packets, a frame scan and a review scrubber provide distinct motion for the four stages. Manual step selection pauses playback so readers can inspect the scene.
 
-All 26 steps (DynaFace 4, MiniMind 8, ChatMind 14) have numbered controls and matching individually colored explanation frames. Architecture frames, highlighted nodes, labels, routes and arrowheads follow the selected step palette. Disabled file access is dotted; proposed modules are dashed and identified by text. Maps, implementation details, and animation areas remain inline.
+All 18 steps (DynaFace 4, MiniMind 8, ChatMind 6) have numbered controls and matching individually colored explanation frames. Architecture frames, highlighted nodes, labels, routes and arrowheads follow the selected step palette. Disabled file access is dotted; proposed modules are dashed and identified by text. Maps, implementation details, and animation areas remain inline.
 
 All step palettes are unique within each project. Diagram node fill, borders, labels, active connections and context-stroke arrowheads now inherit the same active palette as the step controls and captions. DynaFace schematic UI accents also use that palette; natural skin and hair colors stay constant. Static gray components indicate inactive nodes. Disabled/proposed status uses line patterns and explicit labels instead of fixed blue/amber colors.
 
@@ -144,3 +144,11 @@ Active diagram modules carry a compact boxed step number; active arrows carry th
 Checked About, experience and project introductions, implementation details, education, dates, skills and metadata against the latest owner-provided WH_Resume.pdf, with the cover letter as supporting context. MiniMind is a 64M-parameter model; About reflects the stated interest in practical AI engineering, AI agents, AI infrastructure and LLM inference. DynaFace describes patient-video scoring and the full five-area facial-function report workflow. ChatMind names Spring AI, tools, pgvector search, model switching and SSE.
 
 The existing privacy choices remain: no phone number, school email, resume download or UMN attendance dates. Neither supplied PDF is added to the public repository. Fictional animation examples and proposed/disabled extensions retain their explicit labels; they are explanations, not additional resume achievements.
+
+## ChatMind simplification (2026-09-29)
+
+The owner-supplied Lecture 9, Agentic Frameworks: Model Context Protocol (2), informs the diagram structure: model, harness, tools and environment (page 8), file operations as a tool branch (page 21), and execution feedback returning to the model (page 65). The lecture PDF is not published.
+
+The walkthrough now has six steps: Understand, Retrieve, Check, Refine, Answer, Improve. Thirteen modules become seven, and twenty connections become eleven. API, transport and storage plumbing are folded into the harness and knowledge layer; proposed Recovery and Workers branches are removed. A two-round, fictional room-booking search demonstrates incomplete evidence, feedback, a refined query and a supported answer. The final dashed loop is a proposed offline evaluation/revision cycle, not another tool call in a live task or a claim of implemented answer evaluations.
+
+File System remains a dotted, disabled tool branch. The lecture's MCP servers and terminal execution are not represented as implemented ChatMind features. Colors, boxed step numbers, arrow badges, playback controls and reduced-motion handling reuse the existing controller. MiniMind and DynaFace are unchanged.

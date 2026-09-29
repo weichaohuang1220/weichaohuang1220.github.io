@@ -789,3 +789,12 @@ footer { position: relative; padding-top: 30px; }
 .scene-number-tag, .transfer-step-tag { display: inline-grid; place-items: center; height: 23px; padding: 0 7px; border: 1px solid var(--step-accent); border-radius: 6px; background: var(--step-wash); color: var(--step-accent); font: 600 11px/1 var(--sans); font-variant-numeric: tabular-nums; }
 .scene-number-tag { position: absolute; left: 12px; top: -12px; }
 .transfer-step-tag { position: absolute; z-index: 1; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 44px; padding: 0; }
+
+/* A compact agent loop, with runtime plumbing folded into the harness. */
+.chatmind-demo .architecture-svg { min-width: 720px; }
+.chatmind-demo .harness-boundary { fill: #f5f7fb; fill-opacity: .7; stroke: #e1e7f0; stroke-width: 1; }
+.chatmind-demo .architecture-route:not(.is-active) { opacity: .55; }
+.chatmind-demo .disabled-node { opacity: .75; }
+.chatmind-demo .architecture-caption-step { min-height: 230px; }
+.chatmind-demo .architecture-scroll-hint { display: none; }
+@container (max-width: 720px) { .chatmind-demo .architecture-scroll-hint { display: block; } }
